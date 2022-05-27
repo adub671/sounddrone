@@ -1,18 +1,18 @@
-.login-input {
+.signup-input {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
 }
 
-#login-form {
+#signup-form {
     margin: auto;
     width: 50%;
     margin-top: 40%;
 
 }
 
-#login-button {
+#signup-button {
     background-color: #04AA6D;
     border: none;
     color: white;
@@ -23,8 +23,9 @@
     border-radius: 5px;
   }
 
+
   form {
-      width: 70%;
-      margin: auto;
-      margin-top: 10%
-  }
+    width: 70%;
+    margin: auto;
+    margin-top: 10%
+}

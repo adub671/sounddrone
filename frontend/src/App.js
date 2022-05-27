@@ -1,29 +1,9 @@
-// // frontend/src/App.js
-// import React from 'react';
-// import { Route, Switch } from 'react-router-dom';
-// import LoginFormPage from './components/LoginFormPage/index.js';
-
-
-// function App() {
-//   return (
-//     <Switch>
-//       <Route exact path="/">
-//         <div>hello</div>
-//       </Route>
-//       <Route path="/login">
-//         <LoginFormPage />
-//       </Route>
-//     </Switch>
-//   );
-// }
-
-// export default App;
-
 // frontend/src/App.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
+import SignUpFormPage from "./components/SignUpFormPage";
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -42,6 +22,9 @@ function App() {
       </Route>
       <Route path="/login">
         <LoginFormPage />
+      </Route>
+      <Route path="/signup">
+        <SignUpFormPage />
       </Route>
     </Switch>
   );
