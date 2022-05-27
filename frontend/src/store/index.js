@@ -3,11 +3,12 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-//ROOT REDUCER
+import sessionReducer from './session';
+
 const rootReducer = combineReducers({
-
-
+  session: sessionReducer,
 });
+
 
 //IN PRODUCTION ONLY APPLY THUNK MIDDLEWARE OTHERWISE USE THE ENHANCER LOGGER
 let enhancer;
