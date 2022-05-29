@@ -13,24 +13,25 @@ nav {
 
 ul {
     list-style: none;
-    justify-content: right;
-    margin: none;
-    padding: none;
+    height: 100%;
+    margin-top: none;
+
 }
 
 
-a {
+a, .navlink {
     text-decoration: none;
     border: 3px solid grey ;
     border-top:none;
     border-bottom: none;
     padding: 10px;
-    height: 10%;
-    color: whitesmoke
+   
+    color: whitesmoke;
+   margin-left: 10px;
 }
 
 .navlink {
-    height: 100%;
+    height: 50%;
    
 }
 
@@ -48,4 +49,16 @@ a {
     width: fit-content;
     padding: 5px 5px;
     color: whitesmoke;
+}
+
+.active {
+    background-color: gray;
+}
+
+img {
+    position: static;
+    height: 10%;
+    background-color: white;
+    display: inline;
+    overflow: hidden;
 }
