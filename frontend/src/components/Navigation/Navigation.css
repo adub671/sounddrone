@@ -1,0 +1,64 @@
+nav {
+    
+    width: 100%;
+    background-color: rgb(44, 43, 43) ;
+    padding: 0px 50px;
+    /* border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; */
+    border-bottom: 0.5px solid black;
+    height: 50px;
+    display: inline-block;
+
+}
+
+ul {
+    list-style: none;
+    height: 100%;
+    margin-top: none;
+
+}
+
+
+a, .navlink {
+    text-decoration: none;
+    border: 3px solid grey ;
+    border-top:none;
+    border-bottom: none;
+    padding: 10px;
+   
+    color: whitesmoke;
+   margin-left: 10px;
+}
+
+.navlink {
+    height: 50%;
+   
+}
+
+#profile-button {
+    margin-left: 70%;
+    justify-content: right;
+    color: rgb(44, 43, 43);
+    background-color: whitesmoke;
+}
+
+.profile-dropdown {
+    margin-left: 75%;
+    background-color: rgb(44, 43, 43) ;
+    border: 3px solid grey;
+    width: fit-content;
+    padding: 5px 5px;
+    color: whitesmoke;
+}
+
+.active {
+    background-color: gray;
+}
+
+img {
+    position: static;
+    height: 10%;
+    background-color: white;
+    display: inline;
+    overflow: hidden;
+}
