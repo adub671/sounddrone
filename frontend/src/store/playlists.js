@@ -1,20 +1,14 @@
 // frontend/src/store/playlists.js
 import { csrfFetch } from './csrf';
 
-const SET_USER = 'session/setUser';
-const REMOVE_USER = 'session/removeUser';
+
 
 const LOAD_PLAYLIST = 'playlist/loadPlaylist'
 const ADD_PLAYLIST = 'playlist/addPlaylist';
-const REMOVE_PLAYLIST= 'playlist/removePlaylist';
+const DELETE_PLAYLIST= 'playlist/removePlaylist';
 const UPDATE_PLAYLIST= 'playlist/updatePlaylist';
 
-const setUser = (user) => {
-  return {
-    type: SET_USER,
-    payload: user,
-  };
-};
+
 
 const loadPlaylist = playlists=> {
     return {
@@ -31,34 +25,19 @@ const addPlaylist = (playlist) => {
     }
 }
 
-const removeUser = () => {
+const removePlaylist = (playlistId) => {
   return {
-    type: REMOVE_USER,
-  };
-};
-
-//LOGIN 
-export const login = (user) => async (dispatch) => {
-  const { credential, password } = user;
-  const response = await csrfFetch('/api/session', {
-    method: 'POST',
-    body: JSON.stringify({
-      credential,
-      password,
-    }),
-  });
-  const data = await response.json();
-  dispatch(setUser(data.user));
-  return response;
-};
+    type: DELETE_PLAYLIST,
+    playlistId
+  }
+}
 
 
 
 //  ADD PLAYLIST
-
 export const createPlaylist = (playlist) => async (dispatch) => {
-  const userId = 1;
-  const { name, imageUrl } = playlist;
+  // const userId = 1;
+  const { name, imageUrl, userId } = playlist;
   const response = await csrfFetch("/api/playlists", {
     method: "POST",
     body: JSON.stringify({
@@ -80,21 +59,28 @@ export const getAllPlaylists = () => async(dispatch) => {
     dispatch(loadPlaylist(playlists))
 }
 
+//REMOVE  PLAYLIST
 
-//LOGOUT USER
-export const logout = () => async (dispatch) => {
-  const response = await csrfFetch('/api/session', {
-    method: 'DELETE',
-  });
-  dispatch(removeUser());
-  return response;
-};
+export const deletePlaylist = (playlistId) => async(dispatch) => {
+  const response = await csrfFetch(`/api/playlists/${playlistId}`,
+  {
+    method: "DELETE"
+  })
+  dispatch(removePlaylist(playlistId))
+  return response
+}
+
+//ADD SONG TO PLAYLIST
+
+//UPDATE PLAYLIST
+
 
 
 //SESSION REDUCER & INITIAL PARAMS 
 const initialState = { }; 
 
 const playlistReducer = (state = initialState, action) => {
+
   let newState;
   switch (action.type) {
     case LOAD_PLAYLIST:
@@ -108,9 +94,10 @@ const playlistReducer = (state = initialState, action) => {
         ...state, [action.playlist.id]: action.playlist
     }
     return newState; 
-    case REMOVE_PLAYLIST:
-        return null
-        //TO DO
+    case DELETE_PLAYLIST:
+       newState = { ...state };
+      delete newState[action.itemId];
+      return newState;
     case UPDATE_PLAYLIST:
         return null
         //TO DO

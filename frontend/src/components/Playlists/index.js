@@ -11,10 +11,17 @@ export default function Playlists() {
     const dispatch = useDispatch();
     const playlists = useSelector((state)=>state.playlists)
     const keyArr = Object.keys(playlists)
+    const handleDelete = () => {
+       // playlistActions.deletePlaylist(  ) TODO
+    }
     
+    
+
+
     useEffect(()=>{
         dispatch(playlistActions.getAllPlaylists())
     },[dispatch])
+
 
 
     if (!playlists) {
@@ -29,6 +36,7 @@ export default function Playlists() {
                     <img src={playlists[playlistId].imageUrl} alt={playlists[playlistId].name}></img>
                     {playlists[playlistId].name} 
                     <div>tracks will go here</div>
+                    <button onClick={handleDelete}>DELETE PLAYLIST</button>
                 </li>
                 
                 )})}
