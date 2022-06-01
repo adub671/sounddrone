@@ -4,7 +4,7 @@ import * as songActions from "../../store/songs";
 import { useDispatch, useSelector } from "react-redux";
 // import './EditSongForm.css'
 
-function EditSongForm({songId}) {
+function EditSongForm({songId, closeModal}) {
 
   const dispatch = useDispatch();
   useEffect(()=>{},[dispatch])
@@ -17,7 +17,6 @@ function EditSongForm({songId}) {
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
-    console.log(e.target.value,'E*******')
     e.preventDefault();
     setErrors([]);
     // return dispatch(songActions.createSong({ name, imageUrl, userId: user.id })).catch(
@@ -27,8 +26,7 @@ function EditSongForm({songId}) {
     //   }
     // );
     dispatch(songActions.editSong({ name, imgUrl: imageUrl, userId: user.id, id: songId }))
-    setName('');
-    setImageUrl('');
+    closeModal();
   };
 
   return (

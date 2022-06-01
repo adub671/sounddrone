@@ -4,7 +4,7 @@ import * as playlistActions from "../../store/playlists";
 import { useDispatch, useSelector } from "react-redux";
 import './EditPlaylistForm.css'
 
-function EditPlaylistForm({playlistId}) {
+function EditPlaylistForm({playlistId, closeModal}) {
 
   const dispatch = useDispatch();
   console.log(playlistId,'playlistID******')
@@ -22,8 +22,7 @@ function EditPlaylistForm({playlistId}) {
     e.preventDefault();
     setErrors([]);
     dispatch(playlistActions.editPlaylist({ name, imageUrl, userId: user.id, id: playlistId }))
-    setName('');
-    setImageUrl('');
+    closeModal();
   };
 
   return (

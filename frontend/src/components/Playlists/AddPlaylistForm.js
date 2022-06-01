@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import * as playlistActions from "../../store/playlists";
 import { useDispatch, useSelector } from "react-redux";
 
-function AddPlaylistForm() {
+function AddPlaylistForm({closeModal}) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -25,6 +25,7 @@ function AddPlaylistForm() {
     dispatch(playlistActions.createPlaylist({ name, imageUrl, userId: user.id }))
     setName('');
     setImageUrl('');
+    closeModal();
   };
 
   return (

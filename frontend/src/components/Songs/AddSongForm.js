@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import * as songActions from "../../store/songs";
 import { useDispatch, useSelector } from "react-redux";
 
-function AddSongForm() {
+function AddSongForm({closeModal}) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [audioUrl, setAudioUrl] = useState("");
@@ -24,8 +24,7 @@ function AddSongForm() {
     //   }
     // );
     dispatch(songActions.createSong({ name, audioUrl, imgUrl:imageUrl, userId: user.id }))
-    setName('');
-    setImageUrl('');
+    closeModal();
   };
 
   return (
