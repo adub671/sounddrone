@@ -62,9 +62,10 @@ export const getAllPlaylists = () => async(dispatch) => {
 //REMOVE  PLAYLIST
 
 export const deletePlaylist = (playlistId) => async(dispatch) => {
-  const response = await csrfFetch(`/api/playlists/${playlistId}`,
+  const response = await csrfFetch(`/api/playlists`,
   {
-    method: "DELETE"
+    method: "DELETE",
+    body: JSON.stringify({playlistId})
   })
   dispatch(removePlaylist(playlistId))
   return response
@@ -95,8 +96,8 @@ const playlistReducer = (state = initialState, action) => {
     }
     return newState; 
     case DELETE_PLAYLIST:
-       newState = { ...state };
-      delete newState[action.itemId];
+      newState = { ...state };
+      delete newState[action.playlistId];
       return newState;
     case UPDATE_PLAYLIST:
         return null

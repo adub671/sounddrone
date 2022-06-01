@@ -11,7 +11,6 @@ function PlaylistForm() {
   
   
   const userId = useSelector((state)=>state.session.user.id)
-  console.log(userId,'userid---')
 
   const handleSubmit = (e) => {
     e.preventDefault();

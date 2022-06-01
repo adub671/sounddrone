@@ -11,8 +11,9 @@ export default function Playlists() {
     const dispatch = useDispatch();
     const playlists = useSelector((state)=>state.playlists)
     const keyArr = Object.keys(playlists)
-    const handleDelete = () => {
-       // playlistActions.deletePlaylist(  ) TODO
+    const handleDelete = (e) => {
+        const playlistId = e.target.value
+        dispatch(playlistActions.deletePlaylist(playlistId))
     }
     
     
@@ -32,11 +33,11 @@ export default function Playlists() {
             <h1>Playlists</h1>
             <ul>
                 {keyArr.map(playlistId=>{return (
-                <li>
+                <li key={playlistId}>
                     <img src={playlists[playlistId].imageUrl} alt={playlists[playlistId].name}></img>
                     {playlists[playlistId].name} 
                     <div>tracks will go here</div>
-                    <button onClick={handleDelete}>DELETE PLAYLIST</button>
+                    <button value={playlistId} onClick={handleDelete} className='delete-button'>DELETE PLAYLIST</button>
                 </li>
                 
                 )})}
