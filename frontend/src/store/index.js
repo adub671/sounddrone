@@ -5,10 +5,12 @@ import thunk from 'redux-thunk';
 
 import playlistReducer from './playlists';
 import sessionReducer from './session';
+import songReducer from './songs';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  playlists: playlistReducer
+  playlists: playlistReducer,
+  songs: songReducer
 });
 
 

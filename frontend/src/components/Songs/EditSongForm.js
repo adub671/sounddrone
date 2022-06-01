@@ -1,41 +1,46 @@
 // frontend/src/components/LoginFormModal/LoginForm.js
 import React, { useEffect, useState } from "react";
-import * as playlistActions from "../../store/playlists";
+import * as songActions from "../../store/songs";
 import { useDispatch, useSelector } from "react-redux";
-import './EditPlaylistForm.css'
+// import './EditSongForm.css'
 
-function EditPlaylistForm({playlistId}) {
+function EditSongForm({songId}) {
 
   const dispatch = useDispatch();
-  console.log(playlistId,'playlistID******')
- 
+  useEffect(()=>{},[dispatch])
   
   const user = useSelector((state)=>state.session.user) ;
-  const playlists = useSelector((state)=>state.playlists);
-  console.log(user,'user***')
+  const songs = useSelector((state)=>state.songs);
 
-  const [name, setName] = useState(playlists[playlistId].name);
-  const [imageUrl, setImageUrl] = useState(playlists[playlistId].imageUrl);
+  const [name, setName] = useState(songs[songId].name);
+  const [imageUrl, setImageUrl] = useState(songs[songId].imgUrl);
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
+    console.log(e.target.value,'E*******')
     e.preventDefault();
     setErrors([]);
-    dispatch(playlistActions.editPlaylist({ name, imageUrl, userId: user.id, id: playlistId }))
+    // return dispatch(songActions.createSong({ name, imageUrl, userId: user.id })).catch(
+    //   async (res) => {
+    //     const data = await res.json();
+    //     if (data && data.errors) setErrors(data.errors);
+    //   }
+    // );
+    dispatch(songActions.editSong({ name, imgUrl: imageUrl, userId: user.id, id: songId }))
     setName('');
     setImageUrl('');
   };
 
   return (
     <>
-      <h1 className="edit-form-title">EDIT PLAYLIST</h1>
+      <h1 className="edit-form-title">EDIT SONG</h1>
       <div className='form-container'>
       <div className="img-preview">
         <div id='img-preview-text'>Image Preview</div>
         <img className="modal-img" src={imageUrl}/>
       </div>
       <form onSubmit={handleSubmit}
-      value={playlistId}> 
+      value={songId}> 
       
         <ul>
           {errors.map((error, idx) => (
@@ -43,7 +48,7 @@ function EditPlaylistForm({playlistId}) {
           ))}
         </ul>
         <label className="form-label">
-          Playlist Name
+          Song Name
           <div>
               <input
               className="form-input"
@@ -73,4 +78,4 @@ function EditPlaylistForm({playlistId}) {
   );
 }
 
-export default EditPlaylistForm;
+export default EditSongForm;

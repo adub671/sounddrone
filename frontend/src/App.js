@@ -1,39 +1,3 @@
-// // frontend/src/App.js
-// import React, { useState, useEffect } from "react";
-// import { useDispatch } from "react-redux";
-// import { Route, Switch } from "react-router-dom";
-// import LoginFormPage from "./components/LoginFormPage";
-// import SignUpFormPage from "./components/SignUpFormPage";
-// import * as sessionActions from "./store/session";
-// import Navigation from "./components/Navigation";
-
-// function App() {
-//   const dispatch = useDispatch();
-//   const [isLoaded, setIsLoaded] = useState(false);
-//   useEffect(() => {
-//     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-//   }, [dispatch]);
-
-//   return (
-//     <>
-//       <Navigation isLoaded={isLoaded} />
-//       {isLoaded && (
-//         <Switch>
-//           <Route path="/login">
-//             <LoginFormPage />
-//           </Route>
-//           <Route path="/signup">
-//             <SignUpFormPage />
-//           </Route>
-//         </Switch>
-//       )}
-//     </>
-//   );
-// }
-
-// export default App;
-
-
 // frontend/src/App.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -42,6 +6,7 @@ import SignUpFormPage from "./components/SignUpFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Playlists from "./components/Playlists";
+import Songs from "./components/Songs"
 
 function App() {
   const dispatch = useDispatch();
@@ -61,6 +26,10 @@ function App() {
           <Route path="/playlists">
             <Playlists />
           </Route>
+          <Route path="/songs">
+            <Songs />
+          </Route>
+          
         </Switch>
       )}
     </>
