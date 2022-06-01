@@ -25,6 +25,14 @@ const addPlaylist = (playlist) => {
     }
 }
 
+
+const updatePlaylist = (playlist) => {
+  return {
+      type: UPDATE_PLAYLIST,
+      playlist
+  }
+}
+
 const removePlaylist = (playlistId) => {
   return {
     type: DELETE_PLAYLIST,
@@ -73,7 +81,27 @@ export const deletePlaylist = (playlistId) => async(dispatch) => {
 
 //ADD SONG TO PLAYLIST
 
-//UPDATE PLAYLIST
+
+
+//EDIT PLAYLIST
+
+export const editPlaylist = (playlist) => async (dispatch) => {
+
+  const { name, imageUrl, userId, id } = playlist;
+  console.log(playlist,'playlist in store----')
+  const response = await csrfFetch("/api/playlists", {
+    method: "PUT",
+    body: JSON.stringify({
+      name,
+      imageUrl,
+      userId,
+      id
+    }),
+  });
+  const data = await response.json();
+  dispatch(updatePlaylist(data));
+  return response;
+};
 
 
 
@@ -100,8 +128,9 @@ const playlistReducer = (state = initialState, action) => {
       delete newState[action.playlistId];
       return newState;
     case UPDATE_PLAYLIST:
-        return null
-        //TO DO
+        newState = {...state};
+        newState[action.playlist.id]=action.playlist
+        return newState;
     default:
       return state;
   }

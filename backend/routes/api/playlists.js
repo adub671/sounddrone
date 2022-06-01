@@ -48,6 +48,20 @@ const validateSignup = [
     }),
   );
 
+  //EDIT PLAYLIST
+
+   router.put(
+    '/',
+    asyncHandler(async (req, res) => {
+      console.log('PUT!!!!!', req.body)
+      const playlist = await db.Playlist.findByPk(req.body.id);
+      await playlist.update(req.body);
+      console.log(playlist,'edit playlist in backend')
+      return res.json(playlist);
+
+    }),
+  );
+
 
 //delete playlist
   router.delete(
