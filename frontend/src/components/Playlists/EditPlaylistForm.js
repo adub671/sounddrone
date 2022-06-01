@@ -16,6 +16,7 @@ function EditPlaylistForm({playlistId}) {
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
+    console.log(e.target.value,'E*******')
     e.preventDefault();
     setErrors([]);
     // return dispatch(playlistActions.createPlaylist({ name, imageUrl, userId: user.id })).catch(
@@ -24,13 +25,14 @@ function EditPlaylistForm({playlistId}) {
     //     if (data && data.errors) setErrors(data.errors);
     //   }
     // );
-    dispatch(playlistActions.createPlaylist({ name, imageUrl, userId: user.id }))
+    dispatch(playlistActions.editPlaylist({ name, imageUrl, userId: user.id, id: playlistId }))
     setName('');
     setImageUrl('');
   };
 
   return (
-    <form onSubmit={handleSubmit}> 
+    <form onSubmit={handleSubmit}
+    value={playlistId}> 
     <h1>EDIT PLAYLIST</h1>
       <ul>
         {errors.map((error, idx) => (
