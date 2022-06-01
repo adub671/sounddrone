@@ -12,10 +12,10 @@ function SongFormModal({type, value}) {
 
   return (
     <>
-      <button className="song-modal-button" onClick={() => setShowModal(true)}>+ A SONG</button>
+      <button className="song-modal-button" onClick={() => setShowModal(true)} >+ A SONG</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <AddSongForm />
+          <AddSongForm closeModal={()=>{setShowModal(!showModal)}}/>
         </Modal>
       )}
     </>
@@ -26,7 +26,7 @@ function SongFormModal({type, value}) {
           <button className="song-modal-button" songId={value} onClick={() => setShowModal(true)}>EDIT SONG</button>
           {showModal && (
             <Modal onClose={() => setShowModal(false)}>
-              <EditSongForm songId={value}/>
+              <EditSongForm songId={value} closeModal={()=>{setShowModal(!showModal)}}/>
             </Modal>
           )}
         </>
