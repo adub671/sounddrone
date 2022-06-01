@@ -32,7 +32,6 @@ const validateSignup = [
   router.get(
     '/',  asyncHandler(async (req, res) => {
         const userId = req;
-        console.log(userId, 'userID---')
         const playlists = await db.Playlist.findAll();
         return res.json(playlists);
      }
@@ -43,10 +42,23 @@ const validateSignup = [
   router.post(
     '/',
     asyncHandler(async (req, res) => {
-     // const { email, password, username } = req.body;
-     console.log(req.body)
       const playlist = await db.Playlist.create(req.body);
       return res.json(playlist);
+
+    }),
+  );
+
+
+//delete playlist
+  router.delete(
+    '/',
+    asyncHandler(async (req, res) => {
+
+     
+      const {playlistId} = req.body
+      const playlist = await db.Playlist.findByPk(playlistId);
+      await playlist.destroy()
+      return res.json(`delete playlist ${playlistId}, success`)
 
     }),
   );

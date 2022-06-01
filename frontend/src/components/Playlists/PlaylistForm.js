@@ -10,7 +10,7 @@ function PlaylistForm() {
   const [errors, setErrors] = useState([]);
   
   
-  const userId = useSelector((state)=>state.session.user)
+  const userId = useSelector((state)=>state.session.user.id)
 
   const handleSubmit = (e) => {
     e.preventDefault();
