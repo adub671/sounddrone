@@ -1,30 +1,37 @@
 // frontend/src/components/LoginFormModal/LoginForm.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as playlistActions from "../../store/playlists";
 import { useDispatch, useSelector } from "react-redux";
 
-function PlaylistForm() {
+function EditPlaylistForm({playlistId}) {
+
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  useEffect(()=>{},[dispatch])
+  
+  const user = useSelector((state)=>state.session.user) ;
+  const playlists = useSelector((state)=>state.playlists);
+
+  const [name, setName] = useState(playlists[playlistId].name);
+  const [imageUrl, setImageUrl] = useState(playlists[playlistId].imageUrl);
   const [errors, setErrors] = useState([]);
-  
-  
-  const userId = useSelector((state)=>state.session.user.id)
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(playlistActions.createPlaylist({ name, imageUrl, userId })).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      }
-    );
+    // return dispatch(playlistActions.createPlaylist({ name, imageUrl, userId: user.id })).catch(
+    //   async (res) => {
+    //     const data = await res.json();
+    //     if (data && data.errors) setErrors(data.errors);
+    //   }
+    // );
+    dispatch(playlistActions.createPlaylist({ name, imageUrl, userId: user.id }))
+    setName('');
+    setImageUrl('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}> 
+    <h1>EDIT PLAYLIST</h1>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
@@ -59,4 +66,4 @@ function PlaylistForm() {
   );
 }
 
-export default PlaylistForm;
+export default EditPlaylistForm;
