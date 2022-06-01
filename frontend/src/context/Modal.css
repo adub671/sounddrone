@@ -23,23 +23,32 @@
     position: absolute;
     background-color:white;
     width: 50%;
-    height: 50%;
-    border-radius: 20px;
+    height: fit-content;
+    border-radius: 2px;
+    padding: 4%;
+    animation-duration: 0.5s;
+    animation-name: modal-slide-in
+
   }
 
-
+  @keyframes modal-slide-in {
+    from {
+      margin-bottom: 100%;
+    }
+    to {
+      margin-bottom: 0%;
+    }
+  }
 
   .login-input {
     width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
     box-sizing: border-box;
 }
 
 #login-form {
-    margin: auto;
+   
     width: 50%;
-    margin-top: 40%;
 
 }
 
@@ -54,7 +63,8 @@
     border-radius: 5px;
   }
 
-  label {
+.form-label {
       font-size: 30px;
       font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      margin-top: 5px;
   }

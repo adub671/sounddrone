@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import * as playlistActions from "../../store/playlists";
 import { useDispatch, useSelector } from "react-redux";
+import './EditPlaylistForm.css'
 
 function EditPlaylistForm({playlistId}) {
 
@@ -31,40 +32,49 @@ function EditPlaylistForm({playlistId}) {
   };
 
   return (
-    <form onSubmit={handleSubmit}
-    value={playlistId}> 
-    <h1>EDIT PLAYLIST</h1>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Playlist Name
-        <div>
-            <input
-            className="form-input"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            />
-        </div>
-      </label>
-      <label>
-        Image Url
-        <div>
-            <input
-            className="form-input"
-            type="text"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-            required
-            />
-        </div>
-      </label>
-      <button id="form-button" type="submit">Submit</button>
-    </form>
+    <>
+      <h1 className="edit-form-title">EDIT PLAYLIST</h1>
+      <div className='form-container'>
+      <div className="img-preview">
+        <div id='img-preview-text'>Image Preview</div>
+        <img className="modal-img" src={imageUrl}/>
+      </div>
+      <form onSubmit={handleSubmit}
+      value={playlistId}> 
+      
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+        <label className="form-label">
+          Playlist Name
+          <div>
+              <input
+              className="form-input"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              />
+          </div>
+        </label>
+        <label className="form-label">
+          Image Url
+          <div>
+              <input
+              className="form-input"
+              type="text"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+              required
+              />
+          </div>
+        </label>
+        <button id="form-button" type="submit">Submit</button>
+      </form>
+      </div>
+    </>
   );
 }
 
