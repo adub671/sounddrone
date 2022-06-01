@@ -15,7 +15,7 @@ function PlaylistFormModal({type, value}) {
       <button className="playlist-modal-button" onClick={() => setShowModal(true)}>+ A PLAYLIST</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <AddPlaylistForm />
+          <AddPlaylistForm closeModal={()=>{setShowModal(!showModal)}}/>
         </Modal>
       )}
     </>
@@ -26,7 +26,7 @@ function PlaylistFormModal({type, value}) {
           <button className="playlist-modal-button" playlistId={value} onClick={() => setShowModal(true)}>EDIT PLAYLIST</button>
           {showModal && (
             <Modal onClose={() => setShowModal(false)}>
-              <EditPlaylistForm playlistId={value}/>
+              <EditPlaylistForm playlistId={value} closeModal={()=>{setShowModal(!showModal)}}/>
             </Modal>
           )}
         </>
