@@ -118,6 +118,14 @@ export const editPlaylist = (playlist) => async (dispatch) => {
   return response;
 };
 
+//GET SONGS IN PLAYLIST
+
+export const getSongsInPlaylist = (playlistId) => async(dispatch) => {
+  const response = await csrfFetch(`/api/playlists/${playlistId}`)
+  const songs = await response.json();
+  dispatch(loadSong(songs))
+}
+
 
 
 //SESSION REDUCER & INITIAL PARAMS 
