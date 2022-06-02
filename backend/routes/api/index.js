@@ -3,6 +3,7 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const songsRouter = require('./songs.js')
 const playlistsRouter = require('./playlists')
+// const addToPlaylistRouter = require('./addToPlaylist')
 
 const { restoreUser } = require('../../utils/auth.js');
 const playlist = require('../../db/models/playlist.js');
@@ -19,6 +20,7 @@ router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/songs', songsRouter);
 router.use('/playlists', playlistsRouter)
+// router.use('/addtoplaylist', addToPlaylistRouter)
 
 
 

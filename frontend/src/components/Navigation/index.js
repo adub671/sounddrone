@@ -28,8 +28,9 @@ function Navigation({ isLoaded }){
     <nav>
         <ul>
             <li>
-                {/* <img alt="icon" src={icon} /> */}
                 <NavLink className="navlink" exact to="/">Home</NavLink>
+                <NavLink className="navlink" exact to="/songs">Tracks</NavLink>
+                <NavLink className="navlink" exact to="/playlists">Playlists</NavLink>
                 {isLoaded && sessionLinks}
             </li>
         </ul>
