@@ -67,6 +67,21 @@ export const getAllPlaylists = () => async(dispatch) => {
     dispatch(loadPlaylist(playlists))
 }
 
+//GET MY PLAYLISTS (LOGGED IN USER)
+
+export const getMyPlaylists = (userId) => async(dispatch) => {
+  console.log('getMYPLAYLIST', userId)
+  const response = await csrfFetch('/api/playlists/mine', {
+    method: "POST",
+    body: JSON.stringify({
+      userId: userId
+    })
+  });
+  const playlists = await response.json();
+  dispatch(loadPlaylist(playlists))
+}
+
+
 //REMOVE  PLAYLIST
 
 export const deletePlaylist = (playlistId) => async(dispatch) => {

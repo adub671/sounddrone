@@ -31,8 +31,17 @@ const validateSignup = [
   //GET PLAYLISTS
   router.get(
     '/',  asyncHandler(async (req, res) => {
-        const userId = req;
         const playlists = await db.Playlist.findAll();
+        return res.json(playlists);
+     }
+  ))
+
+  //GET MY PLAYLIST
+
+  router.post(
+    '/mine',  asyncHandler(async (req, res) => {
+      const userId = req.body.userId;
+        const playlists = await db.Playlist.findAll( {where: {userId}});
         return res.json(playlists);
      }
   ))

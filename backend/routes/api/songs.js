@@ -77,4 +77,16 @@ const validateSignup = [
     }),
   );
 
+
+  //Add to playlist
+    //CREATE PLAYLIST
+    router.post(
+      '/addtoplaylist',
+      asyncHandler(async (req, res) => {
+        const songInPlaylist = await db.SongPlaylistJoin.create(req.body);
+        return res.json(songInPlaylist);
+  
+      }),
+    );
+
   module.exports = router;

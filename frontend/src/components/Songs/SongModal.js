@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import AddSongForm from './AddSongForm';
 import EditSongForm from './EditSongForm';
+import AddToPlaylist from './AddToPlaylist';
 
 
 function SongFormModal({type, value}) {
@@ -20,7 +21,8 @@ function SongFormModal({type, value}) {
       )}
     </>
   );
-} else {
+} 
+if (type === 'edit') {
     return (
         <>
           <button className="song-modal-button" songId={value} onClick={() => setShowModal(true)}>EDIT SONG</button>
@@ -32,6 +34,19 @@ function SongFormModal({type, value}) {
         </>
       );
 
+}
+
+if (type === 'addToPlaylist') {
+  return (
+    <>
+      <button className="song-modal-button" songId={value} onClick={() => setShowModal(true)}>ADD TO PLAYLIST</button>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <AddToPlaylist songId={value} closeModal={()=>{setShowModal(!showModal)}}/>
+        </Modal>
+      )}
+    </>
+  );
 }
 }
 
