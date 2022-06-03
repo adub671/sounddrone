@@ -103,7 +103,18 @@ export const deletePlaylist = (playlistId) => async(dispatch) => {
 }
 
 //ADD SONG TO PLAYLIST
-
+export const addSongToPlaylist = (songId, playlistId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/playlists/${playlistId}`, {
+    method: "POST",
+    body: JSON.stringify({
+      songId,
+      playlistId
+    }),
+  });
+  const data = await response.json();
+  // dispatch(addPlaylist(data));
+  return response;
+};
 
 
 //EDIT PLAYLIST

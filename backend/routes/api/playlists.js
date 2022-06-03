@@ -106,4 +106,15 @@ const validateSignup = [
   ))
 
 
+    //ADD SONG TO PLAYLIST
+    router.post(
+      '/:playlistId',
+      asyncHandler(async (req, res) => {
+        const songInPlaylist = await db.SongPlaylistJoin.create(req.body);
+        return res.json(songInPlaylist);
+  
+      }),
+    );
+
+
   module.exports = router;
