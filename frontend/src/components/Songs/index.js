@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as songActions from "../../store/songs";
- import AddSongForm from "./AddSongForm";
- import SongFormModal from "./SongModal";
- import './Songs.css'
+import AddSongForm from "./AddSongForm";
+import SongFormModal from "./SongModal";
+import './Songs.css'
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 
 
-export default function(Songs) {
+export default function (Songs) {
     const dispatch = useDispatch();
-    const songs = useSelector((state)=>state.songs)
+    const songs = useSelector((state) => state.songs)
+    const user = useSelector((state) => state.session.user)
     const keyArr = Object.keys(songs)
 
     const handleDelete = (e) => {
@@ -17,35 +20,49 @@ export default function(Songs) {
         dispatch(songActions.deleteSong(songId))
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(songActions.getAllSongs())
-    },[dispatch])
+    }, [dispatch])
 
     if (!songs) {
         return (<h1>SONGS LOADING/NOT FOUND</h1>)
     }
     return (
-        <div>
-            <h1>Tracks</h1>
-            <SongFormModal type='new' />
+        <div className='songs-container'>
+            <div className="header">
+                <h1>Tracks</h1>
+                <SongFormModal type='new' />
+            </div>
             <ul>
-                {keyArr.map(songId=>{return (
-                <li key={songId}>
-                    <img src={songs[songId].imgUrl} alt={songs[songId].name} className='song-image'></img>
-                    {songs[songId].name}
-                    <div>URL:{songs[songId].audioUrl}</div>
-                    <SongFormModal value={songId} className='edit-button' type='edit' />
-                    <button value={songId} onClick={handleDelete} className='delete-button'>DELETE SONG</button>
-                    <SongFormModal value={songId} className='edit-button' type='addToPlaylist' />
-                
-
-                </li>
-                
-                )})}
+                {keyArr.map(songId => {
+                    return (
+                        <div className="song-container">
+                        <li key={songId} className='song-list'>
+                            <div className='song'>
+                            <img src={songs[songId].imgUrl} alt={songs[songId].name} className='song-image'></img>
+                            <div classname='name-and-player-container'>
+                                <span className="song-name">{songs[songId].name}</span>
+                                <div className="audio-player-container">
+                                    <AudioPlayer  src={songs[songId].audioUrl} />
+                                </div>
+                            </div>
+                            </div>
+                            <div className="user-song-buttons">
+                                {
+                                    (user.id === songs[songId].userId) ?
+                                        <>
+                                            <SongFormModal value={songId} className='edit-button' type='edit' />
+                                            <button value={songId} onClick={handleDelete} className='delete-button'>DELETE SONG</button>
+                                        </>
+                                        : null
+                                }
+                                <SongFormModal value={songId} className='edit-button' type='addToPlaylist' />
+                            </div>
+                        </li>
+                        </div>
+                    )
+                })}
             </ul>
-        
-            
-        
         </div>
     )
 

@@ -1,3 +1,91 @@
 .song-image {
-    height: 100px;
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    box-shadow: 0 0 3px 0 rgb(0 0 0 / 20%);
+
+}
+
+.audio-player-container {
+    width: 500px;
+    height: 90px;
+}
+
+div.user-song-buttons > button  {
+    background-color: red;
+    height: 60%;
+    margin: auto;
+    border-radius: 8px;
+}
+
+
+.header {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+
+.user-song-buttons {
+    border-top: 1px solid rgb(0 0 0 / 20%);
+    width: 650px;
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 0 0 3px 0 rgb(0 0 0 / 20%);
+    height: 40px;
+    background-color: white;
+}
+
+.name-and-player-container {
+    width: 600px;
+    height: 150px;
+}
+
+.song {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+
+}
+
+.song-name {
+
+    box-shadow: 0 0 3px 0 rgb(0 0 0 / 20%);
+    display: inline-block;
+    text-align: center;
+    width: 500px;
+    height: 40px;
+    padding-top: px;
+    border-bottom: 3px solid rgb(0 0 0 / 20%);
+    vertical-align: center;
+    padding-top: 20px;
+    background-color: white;
+    
+}
+
+.song-list {
+   margin-top: 20px;
+   margin-bottom: 20px;
+}
+
+.songs-container {
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(118 118 217 / 20%);
+
+}
+
+.songs-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.songs-container > ul {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
