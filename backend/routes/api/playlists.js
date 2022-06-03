@@ -93,14 +93,13 @@ const validateSignup = [
     '/:playlistId',  asyncHandler(async (req, res) => {
         console.log(req.session,'reqUser--');
         const playlistId = req.params.playlistId;
-        console.log(playlistId,'playlistId----')
-        const songs = await db.Playlist.findAll(
+        const songsInPlaylist = await db.Playlist.findAll(
         {
             // where: {id: playlistId},
-          include: {model: db.SongPlaylistJoin}
+          include: {model: db.Song}
         }
         );
-        return res.json(songs);
+        return res.json(songsInPlaylist);
      }
   ))
 
