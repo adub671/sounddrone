@@ -1,8 +1,9 @@
 .playlist-image {
-    height: 150px;
-    width: 150px;
-    object-fit: cover;
+    
+    width: 160px !important;
+    object-fit: cover !important;
     box-shadow: 0 0 3px 0 rgb(0 0 0 / 20%);
+    height: 160px !important;
 
 }
 
@@ -19,15 +20,27 @@
     height: 90px;
 }
 
-.playlist-buttons  {
+.user-playlist-buttons > button {
     background-color: red;
-    height: 60%;
+    height: 40px;
     margin: auto;
-    border-radius: 8px;
+    border-radius: 1px;
+}
+
+.playlist-song-container {
+    width: 438px;
+    height: 20px;
+    padding: 2px;
+}
+
+.playlist-songs-container {
+    height: 88px;
+    overflow-y: scroll;
+    background-color: whitesmoke;
 }
 
 
-.header {
+.playlist-header {
     width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -45,27 +58,31 @@
     background-color: white;
 }
 
-.user-playlist-buttons > button {
- height: 20px;
-}
+
 
 
 .playlist-container {
     width: 600px;
+    height: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.playlist-container > li {
+    display: grid;
+    grid-template-columns: 160px 1fr;
 }
 
 .playlist-name {
 
     box-shadow: 0 0 3px 0 rgb(0 0 0 / 20%);
-    display: inline-block;
-    text-align: center;
-    width: 500px;
-    height: 40px;
-    padding-top: px;
-    border-bottom: 3px solid rgb(0 0 0 / 20%);
-    vertical-align: center;
-    padding-top: 20px;
+    display: flex;
+    width: max;
+    height: 30px;
+    border-bottom: 1px solid black;
+    align-items: center;
     background-color: white;
+    justify-content: left;
     
 }
 
@@ -79,7 +96,7 @@
     margin-left: auto;
     margin-right: auto;
     background-color: rgb(118 118 217 / 20%);
-
+   padding: 50px;
 }
 
 .playlists-container {
@@ -96,9 +113,13 @@
     align-items: center;
 }
 
-.playlist-modal-button {
+#upload {
     margin-top: 10px;
     height: 50px;
     background-color: rgb(255, 149, 0);
     border-radius: 50px;
+}
+
+.playlist-left-container {
+    background-color: whitesmoke;
 }

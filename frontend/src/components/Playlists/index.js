@@ -5,6 +5,7 @@ import * as playlistActions from "../../store/playlists";
 import AddPlaylistForm from "./AddPlaylistForm";
 import PlaylistFormModal from "./PlayListModal";
 import AudioPlayer from 'react-h5-audio-player'
+import Playlist from "./Playlist";
 import './Playlists.css';
 
 export default function Playlists() {
@@ -42,45 +43,19 @@ export default function Playlists() {
     }
     return (
         <div>
-            <h1>Playlists</h1>
-            <PlaylistFormModal type='new' />
             <div className="playlists-container">
+            <div className="playlist-header">
+            <h1 className="playlist-title">Playlists</h1>
+            <PlaylistFormModal type='new' />
+            </div>
                 <ul>
-                    {keyArr.map(playlistId => {
+                    { 
+                    keyArr.map(playlistId => {
+                        
                         return (
-                            <div className="playlist-container">
-                                <li key={playlistId}>
-                                    <img src={playlists[playlistId].imageUrl} alt={playlists[playlistId].name} className='playlist-image'></img>
-
-                                    <div className="playlist-name">{playlists[playlistId].name}</div>
-                                    <div className="playlist-songs-container">
-                                
-                                    {
-                                  
-                                        playlists[playlistId].Songs?.map((song)=>
-                                        {
-                                        return (
-                                        <li className="playlist-song" id={song.id}>
-                                            <div className="song-container">
-                                            <img src={song.imgUrl} className='tiny-image'></img>
-                                            {song.name}
-                                            </div>
-                                        </li>) 
-                                        }   
-                                    )
-                                    }
-                                    
-                                    
-                                    
-                                    </div>
-
-                                    <div> </div>
-                                    <div className="user-playlist-buttons">
-                                        <PlaylistFormModal value={playlistId} id='playlist-edit-button' className='user-playlist-button' />
-                                        <button value={playlistId} onClick={handleDelete} className='playlist-button' id='playlist-delete-button'>DELETE PLAYLIST</button>
-                                    </div>
-                                </li>
-                            </div>
+                            <>
+                            <Playlist playlists={playlists} playlistId={playlistId}/>
+                            </>
 
                         )
                     })}

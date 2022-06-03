@@ -104,7 +104,7 @@ export const deletePlaylist = (playlistId) => async(dispatch) => {
 
 //ADD SONG TO PLAYLIST
 export const addSongToPlaylist = (songId, playlistId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/playlists/${playlistId}`, {
+  const response = await csrfFetch(`/api/songplaylist/add`, {
     method: "POST",
     body: JSON.stringify({
       songId,
