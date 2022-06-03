@@ -13,6 +13,7 @@ function EditSongForm({songId, closeModal}) {
   const songs = useSelector((state)=>state.songs);
 
   const [name, setName] = useState(songs[songId].name);
+  const [audioUrl, setAudioUrl] = useState(songs[songId].audioUrl);
   const [imageUrl, setImageUrl] = useState(songs[songId].imgUrl);
   const [errors, setErrors] = useState([]);
 
@@ -25,7 +26,7 @@ function EditSongForm({songId, closeModal}) {
     //     if (data && data.errors) setErrors(data.errors);
     //   }
     // );
-    dispatch(songActions.editSong({ name, imgUrl: imageUrl, userId: user.id, id: songId }))
+    dispatch(songActions.editSong({ name, audioUrl, imgUrl: imageUrl, userId: user.id, id: songId }))
     closeModal();
   };
 
@@ -53,6 +54,18 @@ function EditSongForm({songId, closeModal}) {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
+              />
+          </div>
+        </label>
+        <label className="form-label">
+          Audio Url
+          <div>
+              <input
+              className="form-input"
+              type="text"
+              value={audioUrl}
+              onChange={(e) => setAudioUrl(e.target.value)}
               required
               />
           </div>
