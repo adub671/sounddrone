@@ -32,7 +32,9 @@ const validateSignup = [
   router.get(
     '/',  asyncHandler(async (req, res) => {
         console.log(req.session,'reqUser--');
-        const playlists = await db.Playlist.findAll();
+        const playlists = await db.Playlist.findAll({
+        include: {model: db.Song}
+      });
         return res.json(playlists);
      }
   ))

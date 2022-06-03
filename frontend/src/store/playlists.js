@@ -7,6 +7,7 @@ const LOAD_PLAYLIST = 'playlist/loadPlaylist'
 const ADD_PLAYLIST = 'playlist/addPlaylist';
 const DELETE_PLAYLIST= 'playlist/removePlaylist';
 const UPDATE_PLAYLIST= 'playlist/updatePlaylist';
+// const LOAD_PLAYLIST_SONGS = 'playlist/loadPlaylistSongs'
 
 
 
@@ -39,6 +40,13 @@ const removePlaylist = (playlistId) => {
     playlistId
   }
 }
+
+// const loadPlaylistSongs = (playlistId) => {
+//   return {
+//     type: LOAD_PLAYLIST_SONGS,
+//     playlistId
+//   }
+// }
 
 
 
@@ -146,6 +154,10 @@ const playlistReducer = (state = initialState, action) => {
         newState = {...state};
         newState[action.playlist.id]=action.playlist
         return newState;
+    // case LOAD_PLAYLIST_SONGS:
+    //   newState = {...state};
+    //   newState[action.playlist.id].playlist
+        return newState
     default:
       return state;
   }
