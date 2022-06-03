@@ -56,7 +56,6 @@ const validateSignup = [
     asyncHandler(async (req, res) => {
       const song = await db.Song.findByPk(req.body.id);
       await song.update(req.body);
-      console.log(song,'edit song in backend')
       return res.json(song);
 
     }),

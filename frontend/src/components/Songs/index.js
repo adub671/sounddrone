@@ -49,7 +49,7 @@ export default function (Songs) {
                             </div>
                             <div className="user-song-buttons">
                                 {
-                                    (user && (user.id === songs[songId].userId)) ?
+                                   user && (user.id === songs[songId].userId) ?
                                         <>
                                             <SongFormModal value={songId} className='edit-button' type='edit' />
                                             <button value={songId} onClick={handleDelete} className='delete-button'>DELETE SONG</button>

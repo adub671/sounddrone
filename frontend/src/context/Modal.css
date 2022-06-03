@@ -68,3 +68,10 @@
       font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
       margin-top: 5px;
   }
+
+  .modal-title {
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+  }
