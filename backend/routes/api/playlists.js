@@ -92,12 +92,13 @@ const validateSignup = [
   router.get(
     '/:playlistId',  asyncHandler(async (req, res) => {
         console.log(req.session,'reqUser--');
-        const playlistId = req.params.url;
+        const playlistId = req.params.playlistId;
         console.log(playlistId,'playlistId----')
         const songs = await db.Playlist.findAll(
-          {where: {id: PlaylistId},
-          include: {model:'Song'   
-          }}
+          {
+            // where: {id: playlistId},
+          include: {model: db.SongPlaylistJoin}
+        }
         );
         return res.json(songs);
      }

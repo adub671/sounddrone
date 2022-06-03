@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   SongPlaylistJoin.associate = function(models) {
     // associations can be defined here
-    SongPlaylistJoin.belongsTo(models.Song, {foreignKey: 'songId'})
-    SongPlaylistJoin.belongsTo(models.Playlist, {foreignKey: 'playlistId'})
+     SongPlaylistJoin.belongsTo(models.Song, {foreignKey: 'songId'})
+     SongPlaylistJoin.belongsTo(models.Playlist, {foreignKey: 'playlistId'})
   };
   return SongPlaylistJoin;
 };
