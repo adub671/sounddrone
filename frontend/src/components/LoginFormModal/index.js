@@ -11,7 +11,7 @@ function LoginFormModal() {
       <span className="navlink" onClick={() => setShowModal(true)}>Log In</span>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <LoginForm closeModal={setShowModal=(!showModal)}/>
+          <LoginForm />
         </Modal>
       )}
     </>

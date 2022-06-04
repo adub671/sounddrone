@@ -12,17 +12,29 @@ export default function Playlist ({ playlistId}) {
     const playlists = useSelector((state) => state.playlists)
     const playlist = playlists[playlistId];
     //THESE LINES ARE CAUSING A BUG WHERE AFTER YOU ADD A PLAYLIST IT WON'T LOAD THE PLAYLIST PAGE
-    const [audioUrl, setAudioUrl] = useState(playlist ? playlist?.Songs[0]?.audioUrl : null)
-    const [playingName, setPlayingName] = useState(playlist ? playlist?.Songs[0]?.name : null)
-
+    const [audioUrl, setAudioUrl] = useState(''
+        
+        // playlist?.Songs[0]?.audioUrl 
+        )
+    const [playingName, setPlayingName] = useState(
+      ''
+        // playlist?.Songs[0]?.name
+        )
     //THESE LINES ARE CAUSING A BUG WHERE AFTER YOU ADD A PLAYLIST IT WON'T LOAD THE PLAYLIST PAGE
- 
+    useEffect(()=> {
+        if (playlist.Songs) {setAudioUrl(playlist?.Songs[0]?.audioUrl); 
+            setPlayingName(playlist?.Songs[0]?.name) ;} 
+        else {
+            return null
+        }
+    },[])
     useEffect(() => {
         dispatch(playlistActions.getAllPlaylists())
     }, [dispatch])
     
     const handleDelete = (e) => {
         const playlistId = e.target.value
+        dispatch(playlistActions.clearPlaylist(playlistId))
         dispatch(playlistActions.deletePlaylist(playlistId))
         
     }
@@ -47,8 +59,10 @@ return (
         <div className="playlist-right-container">
             <AudioPlayer src={audioUrl}/>
             <div className="playlist-name">
-                {playlist.name}
-                <span>: {playingName}</span>
+               <span className="playlist-name-text"> {playlist.name}: </span>
+                <div className="scrolling-container">
+                    <span className="playing-name"> {playingName}</span>
+                </div>
             </div>
             <div className="playlist-songs-container">
                 {

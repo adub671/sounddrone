@@ -116,13 +116,35 @@ export const addSongToPlaylist = (songId, playlistId) => async (dispatch) => {
   return response;
 };
 
+//REMOVE SONG FROM  PLAYLIST
+
+export const deleteSongFromAllPlaylists = (songId) => async(dispatch) => {
+  const response = await csrfFetch(`/api/songplaylist/delete/all`,
+  {
+    method: "DELETE",
+    body: JSON.stringify({songId})
+  })
+  // dispatch(removePlaylist(playlistId)) getAllPlaylists?
+
+  return response
+}
+
+//REMOVE PLAYLIST FROM SONG (CLEAR PLAYLIST)
+export const clearPlaylist = (playlistId) => async(dispatch) => {
+  const response = await csrfFetch(`/api/songplaylist/delete/${playlistId}`,
+  {
+    method: "DELETE",
+    body: JSON.stringify({playlistId})
+  })
+
+  return response;
+}
 
 //EDIT PLAYLIST
 
 export const editPlaylist = (playlist) => async (dispatch) => {
 
   const { name, imageUrl, userId, id } = playlist;
-  console.log(playlist,'playlist in store----')
   const response = await csrfFetch("/api/playlists", {
     method: "PUT",
     body: JSON.stringify({

@@ -14,6 +14,7 @@ export default function Playlists() {
     const keyArr = Object.keys(playlists)
     const handleDelete = (e) => {
         const playlistId = e.target.value
+        dispatch(playlistActions.clearPlaylist(playlistId))
         dispatch(playlistActions.deletePlaylist(playlistId))
     }
 
