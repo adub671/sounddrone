@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import './SongModal.css';
 import LoginForm from "../LoginFormModal/LoginForm";
 
-export default function AddToPlaylist({closeModal}) {
+export default function AddToPlaylist({closeModal, songId}) {
     const dispatch = useDispatch();
     const playlists = useSelector((state)=>state.playlists)
     const user = useSelector((state)=>state.session.user)
@@ -22,7 +22,8 @@ export default function AddToPlaylist({closeModal}) {
     const handleAddToPlaylist = (e) =>{
         e.preventDefault();
         const playlistId = e.target.value;
-        // dispatch(playlistActions.getMyPlaylists(user.id))
+        console.log()
+         dispatch(playlistActions.addSongToPlaylist(songId, playlistId))
 
         closeModal();
     }
@@ -39,7 +40,7 @@ export default function AddToPlaylist({closeModal}) {
             <li key={playlistId}>
                 <img className='playlist-image' src={playlists[playlistId].imageUrl} alt={playlists[playlistId].name}></img>
                 {playlists[playlistId].name} 
-                <button value={playlistId} onClick={handleAddToPlaylist} className='add-to-playlist-button'>ADD TO PLAYLIST</button>
+                <button value={playlistId} onClick={handleAddToPlaylist} className='add-to-playlist-button' songId={songId}>ADD TO PLAYLIST</button>
             </li> 
             )})}
         </ul>

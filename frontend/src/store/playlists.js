@@ -7,6 +7,7 @@ const LOAD_PLAYLIST = 'playlist/loadPlaylist'
 const ADD_PLAYLIST = 'playlist/addPlaylist';
 const DELETE_PLAYLIST= 'playlist/removePlaylist';
 const UPDATE_PLAYLIST= 'playlist/updatePlaylist';
+// const LOAD_PLAYLIST_SONGS = 'playlist/loadPlaylistSongs'
 
 
 
@@ -39,6 +40,13 @@ const removePlaylist = (playlistId) => {
     playlistId
   }
 }
+
+// const loadPlaylistSongs = (playlistId) => {
+//   return {
+//     type: LOAD_PLAYLIST_SONGS,
+//     playlistId
+//   }
+// }
 
 
 
@@ -95,15 +103,48 @@ export const deletePlaylist = (playlistId) => async(dispatch) => {
 }
 
 //ADD SONG TO PLAYLIST
+export const addSongToPlaylist = (songId, playlistId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/songplaylist/add`, {
+    method: "POST",
+    body: JSON.stringify({
+      songId,
+      playlistId
+    }),
+  });
+  const data = await response.json();
+  // dispatch(addPlaylist(data));
+  return response;
+};
 
+//REMOVE SONG FROM  PLAYLIST
 
+export const deleteSongFromAllPlaylists = (songId) => async(dispatch) => {
+  const response = await csrfFetch(`/api/songplaylist/delete/all`,
+  {
+    method: "DELETE",
+    body: JSON.stringify({songId})
+  })
+  // dispatch(removePlaylist(playlistId)) getAllPlaylists?
+
+   return response
+}
+
+//REMOVE PLAYLIST FROM SONG (CLEAR PLAYLIST)
+export const clearPlaylist = (playlistId) => async(dispatch) => {
+  const response = await csrfFetch(`/api/songplaylist/delete/${playlistId}`,
+  {
+    method: "DELETE",
+    body: JSON.stringify({playlistId})
+  })
+
+   return response;
+}
 
 //EDIT PLAYLIST
 
 export const editPlaylist = (playlist) => async (dispatch) => {
 
   const { name, imageUrl, userId, id } = playlist;
-  console.log(playlist,'playlist in store----')
   const response = await csrfFetch("/api/playlists", {
     method: "PUT",
     body: JSON.stringify({
@@ -146,6 +187,10 @@ const playlistReducer = (state = initialState, action) => {
         newState = {...state};
         newState[action.playlist.id]=action.playlist
         return newState;
+    // case LOAD_PLAYLIST_SONGS:
+    //   newState = {...state};
+    //   newState[action.playlist.id].playlist
+        return newState
     default:
       return state;
   }

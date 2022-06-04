@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as songActions from "../../store/songs";
+import * as playlistActions from '../../store/playlists'
 import AddSongForm from "./AddSongForm";
 import SongFormModal from "./SongModal";
 import './Songs.css'
@@ -17,6 +18,7 @@ export default function (Songs) {
 
     const handleDelete = (e) => {
         const songId = e.target.value
+        dispatch(playlistActions.deleteSongFromAllPlaylists(songId))
         dispatch(songActions.deleteSong(songId))
     }
 
@@ -39,11 +41,11 @@ export default function (Songs) {
                         <div className="song-container">
                         <li key={songId} className='song-list'>
                             <div className='song'>
-                            <img src={songs[songId].imgUrl} alt={songs[songId].name} className='song-image'></img>
-                            <div classname='name-and-player-container'>
-                                <span className="song-name">{songs[songId].name}</span>
+                            <img src={songs[songId].imgUrl} alt={songs[songId]?.name} className='song-image'></img>
+                            <div className='name-and-player-container'>
+                                <span className="song-name">{songs[songId]?.name}</span>
                                 <div className="audio-player-container">
-                                    <AudioPlayer  src={songs[songId].audioUrl} />
+                                    <AudioPlayer  src={songs[songId]?.audioUrl} />
                                 </div>
                             </div>
                             </div>

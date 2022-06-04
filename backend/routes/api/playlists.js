@@ -32,7 +32,9 @@ const validateSignup = [
   router.get(
     '/',  asyncHandler(async (req, res) => {
         console.log(req.session,'reqUser--');
-        const playlists = await db.Playlist.findAll();
+        const playlists = await db.Playlist.findAll({
+        include: {model: db.Song}
+      });
         return res.json(playlists);
      }
   ))
@@ -102,6 +104,17 @@ const validateSignup = [
         return res.json(songsInPlaylist);
      }
   ))
+
+
+    //ADD SONG TO PLAYLIST
+    router.post(
+      '/:playlistId/add',
+      asyncHandler(async (req, res) => {
+        const songInPlaylist = await db.SongPlaylistJoin.create(req.body);
+        return res.json(songInPlaylist);
+  
+      }),
+    );
 
 
   module.exports = router;
