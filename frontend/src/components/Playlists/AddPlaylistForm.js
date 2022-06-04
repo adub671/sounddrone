@@ -22,7 +22,7 @@ function AddPlaylistForm({closeModal}) {
     //     if (data && data.errors) setErrors(data.errors);
     //   }
     // );
-    dispatch(playlistActions.createPlaylist({ name, imageUrl, userId: user.id }))
+    dispatch(playlistActions.createPlaylist({ name, imageUrl, userId: user.id }));
     setName('');
     setImageUrl('');
     closeModal();

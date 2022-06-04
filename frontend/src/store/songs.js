@@ -80,10 +80,6 @@ export const deleteSong = (songId) => async(dispatch) => {
   return response
 }
 
-//ADD SONG TO SONG
-
-
-
 //EDIT SONG
 
 export const editSong = (song) => async (dispatch) => {

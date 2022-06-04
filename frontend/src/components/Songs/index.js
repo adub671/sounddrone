@@ -42,7 +42,7 @@ export default function (Songs) {
                         <li key={songId} className='song-list'>
                             <div className='song'>
                             <img src={songs[songId].imgUrl} alt={songs[songId]?.name} className='song-image'></img>
-                            <div classname='name-and-player-container'>
+                            <div className='name-and-player-container'>
                                 <span className="song-name">{songs[songId]?.name}</span>
                                 <div className="audio-player-container">
                                     <AudioPlayer  src={songs[songId]?.audioUrl} />

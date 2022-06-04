@@ -126,7 +126,7 @@ export const deleteSongFromAllPlaylists = (songId) => async(dispatch) => {
   })
   // dispatch(removePlaylist(playlistId)) getAllPlaylists?
 
-  return response
+   return response
 }
 
 //REMOVE PLAYLIST FROM SONG (CLEAR PLAYLIST)
@@ -137,7 +137,7 @@ export const clearPlaylist = (playlistId) => async(dispatch) => {
     body: JSON.stringify({playlistId})
   })
 
-  return response;
+   return response;
 }
 
 //EDIT PLAYLIST
