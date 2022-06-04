@@ -5,6 +5,7 @@ import * as playlistActions from "../../store/playlists";
 import { useDispatch, useSelector } from "react-redux";
 import './SongModal.css';
 import LoginForm from "../LoginFormModal/LoginForm";
+import PlaylistFormModal from "../Playlists/PlayListModal";
 
 export default function AddToPlaylist({closeModal, songId}) {
     const dispatch = useDispatch();
@@ -30,7 +31,7 @@ export default function AddToPlaylist({closeModal, songId}) {
     if (!user) {
         return ( <LoginForm title='Login To Add To Playlist'/>)
     } 
-    if (keyArr.length === 0 ) {return <h1>PLAYLISTS LOADING...</h1>}
+    if (keyArr.length === 0 ) {return <> <h1>PLAYLISTS NOT FOUND, TRY ADDING A PLAYLIST</h1> <PlaylistFormModal type='new' /></>}
     else {
     return (
     <form onSubmit={()=>{}}> 
