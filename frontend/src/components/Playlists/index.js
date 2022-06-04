@@ -40,7 +40,7 @@ export default function Playlists() {
 
 
     if (!playlists) {
-        return (<h1>PLAYLISTS LOADING/NOT FOUND</h1>)
+        return (<h1>PLAYLISTS DO NOT EXIST </h1>)
     }
     return (
         <div>

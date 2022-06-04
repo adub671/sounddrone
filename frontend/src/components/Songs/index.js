@@ -27,7 +27,7 @@ export default function (Songs) {
     }, [dispatch])
 
     if (!songs) {
-        return (<h1>SONGS LOADING/NOT FOUND</h1>)
+        return (<h1>SONGS NOT FOUND / NO SONGS EXIST</h1>)
     }
     return (
         <div className='songs-container'>
