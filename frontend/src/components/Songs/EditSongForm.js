@@ -26,8 +26,20 @@ function EditSongForm({songId, closeModal}) {
     //     if (data && data.errors) setErrors(data.errors);
     //   }
     // );
-    dispatch(songActions.editSong({ name, audioUrl, imgUrl: imageUrl, userId: user.id, id: songId }))
-    closeModal();
+    return dispatch(songActions.editSong({ name, audioUrl, imgUrl: imageUrl, userId: user.id, id: songId })).catch(
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) 
+          {setErrors(data.errors); 
+            return data.errors;
+            }
+        }
+      ).then((data)=>{
+        //WHEN THERE IS AN ERROR I GET AN ARRAY FROM DATA
+        ///WHEN THERE IS NOT AN ERROR I GET AN OBJECT (SUCCESSFUL PROMISE)
+        //CLOSE MODAL ONLY IF YOU GET AN OBJECT
+        if (!Array.isArray(data)) {closeModal()}
+    } )
   };
 
   return (
@@ -43,7 +55,7 @@ function EditSongForm({songId, closeModal}) {
       
         <ul>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <li key={idx} className='errors'>{error}</li>
           ))}
         </ul>
         <label className="form-label">

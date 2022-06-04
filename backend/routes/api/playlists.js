@@ -8,30 +8,20 @@ const db = require('../../db/models');
 const user = require('../../db/models/user');
 const router = express.Router();
 
-const validateSignup = [
-    check('email')
+const validatePlaylist = [
+    check('name')
       .exists({ checkFalsy: true })
-      .isEmail()
       .withMessage('Please provide a valid email.'),
-    check('username')
-      .exists({ checkFalsy: true })
-      .isLength({ min: 4 })
-      .withMessage('Please provide a username with at least 4 characters.'),
-    check('username')
-      .not()
-      .isEmail()
-      .withMessage('Username cannot be an email.'),
-    check('password')
-      .exists({ checkFalsy: true })
-      .isLength({ min: 6 })
-      .withMessage('Password must be 6 characters or more.'),
+    check('name')
+      .isLength({max:100})
+      .withMessage('Please provide a name less than 100 characters'),
     handleValidationErrors
   ];
 
   //GET PLAYLISTS
   router.get(
     '/',  asyncHandler(async (req, res) => {
-        console.log(req.session,'reqUser--');
+        
         const playlists = await db.Playlist.findAll({
         include: {model: db.Song}
       });
@@ -42,7 +32,8 @@ const validateSignup = [
   //GET MY PLAYLIST
 
   router.post(
-    '/mine',  asyncHandler(async (req, res) => {
+    '/mine', 
+    asyncHandler(async (req, res) => {
       const userId = req.body.userId;
         const playlists = await db.Playlist.findAll( {where: {userId}});
         return res.json(playlists);
@@ -53,6 +44,7 @@ const validateSignup = [
   //CREATE PLAYLIST
   router.post(
     '/',
+    validatePlaylist,
     asyncHandler(async (req, res) => {
       const playlist = await db.Playlist.create(req.body);
       return res.json(playlist);
@@ -63,12 +55,10 @@ const validateSignup = [
   //EDIT PLAYLIST
 
    router.put(
-    '/',
+    '/', validatePlaylist,
     asyncHandler(async (req, res) => {
-      console.log('PUT!!!!!', req.body)
       const playlist = await db.Playlist.findByPk(req.body.id);
       await playlist.update(req.body);
-      console.log(playlist,'edit playlist in backend')
       return res.json(playlist);
 
     }),
@@ -78,9 +68,7 @@ const validateSignup = [
 //delete playlist
   router.delete(
     '/',
-    asyncHandler(async (req, res) => {
-
-     
+    asyncHandler(async (req, res) => {    
       const {playlistId} = req.body
       const playlist = await db.Playlist.findByPk(playlistId);
       await playlist.destroy()
@@ -95,12 +83,7 @@ const validateSignup = [
     '/:playlistId',  asyncHandler(async (req, res) => {
         console.log(req.session,'reqUser--');
         const playlistId = req.params.playlistId;
-        const songsInPlaylist = await db.Playlist.findAll(
-        {
-            // where: {id: playlistId},
-          include: {model: db.Song}
-        }
-        );
+        const songsInPlaylist = await db.Playlist.findAll({include: {model: db.Song}});
         return res.json(songsInPlaylist);
      }
   ))

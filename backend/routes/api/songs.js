@@ -8,23 +8,21 @@ const db = require('../../db/models');
 const user = require('../../db/models/user');
 const router = express.Router();
 
-const validateSignup = [
-    check('email')
+const validateSongs = [
+    check('name')
       .exists({ checkFalsy: true })
-      .isEmail()
-      .withMessage('Please provide a valid email.'),
-    check('username')
+      .isLength({max: 100})
+      .withMessage('Please provide a name that is less than 100 Characters'),
+    check('audioUrl')
       .exists({ checkFalsy: true })
-      .isLength({ min: 4 })
-      .withMessage('Please provide a username with at least 4 characters.'),
-    check('username')
-      .not()
-      .isEmail()
-      .withMessage('Username cannot be an email.'),
-    check('password')
-      .exists({ checkFalsy: true })
-      .isLength({ min: 6 })
-      .withMessage('Password must be 6 characters or more.'),
+      .withMessage('Please enter an audio URL')
+      .isLength({  max: 255 })
+      .withMessage('URL must be less than 255 characters')
+      .isURL()
+      .withMessage('Please enter a valid audio URL'),
+    check('imageUrl')
+      .isLength({  max: 255 })
+      .withMessage('URL must be less than 255 characters'),
     handleValidationErrors
   ];
 
@@ -41,8 +39,8 @@ const validateSignup = [
   //CREATE SONG
   router.post(
     '/',
+    validateSongs,
     asyncHandler(async (req, res) => {
-        console.log(req.body,'***********')
       const song = await db.Song.create(req.body);
       return res.json(song);
 
@@ -53,6 +51,7 @@ const validateSignup = [
 
    router.put(
     '/',
+    validateSongs,
     asyncHandler(async (req, res) => {
       const song = await db.Song.findByPk(req.body.id);
       await song.update(req.body);

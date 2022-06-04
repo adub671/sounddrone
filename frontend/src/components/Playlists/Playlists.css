@@ -5,6 +5,8 @@
     box-shadow: 0 0 3px 0 rgb(0 0 0 / 20%);
     height: 160px !important;
     border: .1px solid black;
+    margin: 0px;
+    padding: 0px;
 
 }
 
@@ -61,8 +63,9 @@
     justify-content: space-around;
     align-items: center;
     box-shadow: 0 0 3px 0 rgb(0 0 0 / 20%);
-    height: 40px;
-    background-color: white;
+    background-color: whitesmoke;
+    height: 45px;
+    
 }
 
 
@@ -131,6 +134,8 @@
 
 .playlist-left-container {
     background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
 }
 
 .playing-name {
