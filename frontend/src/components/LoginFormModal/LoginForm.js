@@ -54,7 +54,7 @@ function LoginForm({title, closeModal}) {
               />
           </div>
         </label>
-        <button id="login-button" type="submit">Log In</button>
+        <button id="login-button" type="submit">LOGIN</button>
       </form>
     </div>
   );

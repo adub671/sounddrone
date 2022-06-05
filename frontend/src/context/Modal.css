@@ -53,12 +53,14 @@
 }
 
 #login-button {
-    background-color: #04AA6D;
-    border: none;
-    color: white;
-    padding: 16px 32px;
+    background-color: yellow;
+    border: 1px solid black;
+    color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 20px;
+    padding: 2px 32px;
     text-decoration: none;
-    margin: 4px 2px;
+    margin-top: 10px;
     cursor: pointer;
     border-radius: 5px;
   }
@@ -74,4 +76,9 @@
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 30px;
     font-weight: 300;
+  }
+
+
+  label {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }

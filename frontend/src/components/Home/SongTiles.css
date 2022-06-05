@@ -1,0 +1,39 @@
+
+.song-tile {
+    height: 200px;
+    width: 135px;
+}
+
+.song-tile:hover {
+   border: 3px solid black;
+}
+
+.song-tile-name {
+    overflow: hidden;
+}
+
+.song-tile-image {
+    height: 135px;
+    width: 135px;
+    object-fit: cover;
+}
+
+.home-song-tiles {
+    display: grid;
+    border: none;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 220px 200px;
+    padding-top: 50px;
+    padding-inline: 50px;
+    padding-bottom: 50px;
+    height: 500px;
+    
+
+}
+
+.song-tile-name {
+    height:46px;
+    overflow: hidden;
+    font-size: 12px;
+}
+
