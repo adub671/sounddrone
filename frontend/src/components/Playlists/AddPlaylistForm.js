@@ -58,7 +58,7 @@ function AddPlaylistForm({closeModal}) {
             type="text"
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
-            required
+            
             />
         </div>
       </label>

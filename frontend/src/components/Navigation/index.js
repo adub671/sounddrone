@@ -17,7 +17,7 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-        <LoginFormModal />
+        <LoginFormModal className='navlink' />
         {/* ***note replaced with login modal*** <NavLink to="/login" className="navlink">Log In</NavLink> */}
         <NavLink to="/signup" className="navlink">Sign Up</NavLink>
       </>
@@ -26,14 +26,15 @@ function Navigation({ isLoaded }){
 
   return (
     <nav>
-        <ul>
-            <li>
-                <NavLink className="navlink" exact to="/">Home</NavLink>
-                <NavLink className="navlink" exact to="/songs">Tracks</NavLink>
-                <NavLink className="navlink" exact to="/playlists">Playlists</NavLink>
+        <div className='navlink-container'>
+                <span>soundDrone</span>
+                <NavLink className="navlink" exact to="/">HOME</NavLink>
+                <NavLink className="navlink" exact to="/songs">TRACKS</NavLink>
+                <NavLink className="navlink" exact to="/playlists">PLAYLISTS</NavLink>
+                </div>
+                <div className='session-buttons'>
                 {isLoaded && sessionLinks}
-            </li>
-        </ul>
+                </div>
     </nav>
   );
 }

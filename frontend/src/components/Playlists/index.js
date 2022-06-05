@@ -18,20 +18,6 @@ export default function Playlists() {
         dispatch(playlistActions.deletePlaylist(playlistId))
     }
 
-    const handleEdit = (e) => {
-        const playlistId = e.target.value
-        //NEEDS TO DISPLAY EDIT FORM (preferably in a modal)
-        // dispatch(playlistActions.deletePlaylist(playlistId))
-    }
-
-    const handleAddPlaylist = (e) => {
-        const playlistId = e.target.value
-        //NEEDS TO DISPLAY EDIT FORM (preferably in a modal)
-        // dispatch(playlistActions.deletePlaylist(playlistId))
-    }
-
-
-
 
     useEffect(() => {
         dispatch(playlistActions.getAllPlaylists())
@@ -44,10 +30,10 @@ export default function Playlists() {
     }
     return (
         <div>
-            <div className="playlists-container">
-            <div className="playlist-header">
-            <h1 className="playlist-title">Playlists</h1>
-            <PlaylistFormModal type='new' />
+            <div className="songs-container">
+            <div className="header">
+                <h1 className="playlist-title">Explore Playlists</h1>
+                <PlaylistFormModal type='new' />
             </div>
                 <ul>
                     { 

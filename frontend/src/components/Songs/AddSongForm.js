@@ -43,7 +43,7 @@ function AddSongForm({closeModal}) {
 
   return (
     <form onSubmit={handleSubmit}> 
-    <h1>ADD NEW SONG</h1>
+    <h1>ADD A NEW TRACK</h1>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx} className='errors'>{error}</li>
@@ -57,6 +57,7 @@ function AddSongForm({closeModal}) {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className='signup-input'
             required
             />
         </div>
@@ -69,6 +70,7 @@ function AddSongForm({closeModal}) {
             type="text"
             value={audioUrl}
             onChange={(e) => setAudioUrl(e.target.value)}
+            className='signup-input'
             required
             />
         </div>
@@ -81,11 +83,12 @@ function AddSongForm({closeModal}) {
             type="text"
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
+            className='signup-input'
             required
             />
         </div>
       </label>
-      <button id="form-button" type="submit">Submit</button>
+      <button id="login-button" type="submit">Submit</button>
     </form>
   );
 }

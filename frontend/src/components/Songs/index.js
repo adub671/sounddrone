@@ -30,9 +30,10 @@ export default function (Songs) {
         return (<h1>SONGS NOT FOUND / NO SONGS EXIST</h1>)
     }
     return (
+        <div className="page-container">
         <div className='songs-container'>
             <div className="header">
-                <h1>Tracks</h1>
+                <h1>Discover Tracks</h1>
                 <SongFormModal type='new' />
             </div>
             <ul>
@@ -54,7 +55,7 @@ export default function (Songs) {
                                    user && (user.id === songs[songId].userId) ?
                                         <>
                                             <SongFormModal value={songId} className='edit-button' type='edit' />
-                                            <button value={songId} onClick={handleDelete} className='delete-button'>DELETE SONG</button>
+                                            <button value={songId} onClick={handleDelete} className='song-modal-button'>DELETE SONG</button>
                                         </>
                                         : null
                                 }
@@ -65,6 +66,7 @@ export default function (Songs) {
                     )
                 })}
             </ul>
+        </div>
         </div>
     )
 
