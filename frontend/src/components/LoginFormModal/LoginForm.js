@@ -19,8 +19,15 @@ function LoginForm({title, closeModal}) {
         closeModal();
       }
     );
+  
   };
 
+
+
+  const demoLogin = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.login({credential: 'Demo-lition', password: 'password'}))
+  }
   return (
     <div>
       { title ? <h1 className="modal-title">{title}</h1> : <h1 className="modal-title">Login</h1>}
@@ -55,6 +62,8 @@ function LoginForm({title, closeModal}) {
           </div>
         </label>
         <button id="login-button" type="submit">LOGIN</button>
+        <button id="login-button" type="button" class='demo' onClick={demoLogin}>DEMO USER LOGIN</button>
+        
       </form>
     </div>
   );

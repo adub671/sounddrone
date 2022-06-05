@@ -39,8 +39,8 @@ export default function Home() {
         </div> : <div className="user-buttons-logged-in"><Link to='/songs'>Discover Tracks</Link> <Link to='/playlists'>Discover Playlists</Link></div>}
         </div> 
         <div className="home-song-tiles">
-          {  
-           slicedSongsArr.map((song,idx)=>{return (<SongTile key={idx} song={song} setAudioUrl={()=>{setAudioUrl(song.audioUrl)}}/>)})}
+          {  songs ?
+           slicedSongsArr.map((song,idx)=>{return (<SongTile key={idx} song={song} setAudioUrl={()=>{setAudioUrl(song.audioUrl)}}/>)}) : <div>Loading...</div>}
             
             </div>
         </div>

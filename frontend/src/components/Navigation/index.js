@@ -32,9 +32,9 @@ function Navigation({ isLoaded }){
                 <NavLink className="navlink" exact to="/songs">TRACKS</NavLink>
                 <NavLink className="navlink" exact to="/playlists">PLAYLISTS</NavLink>
                 </div>
-                <div className='session-buttons'>
+        <div className='session-buttons'>
                 {isLoaded && sessionLinks}
-                </div>
+        </div>
     </nav>
   );
 }
