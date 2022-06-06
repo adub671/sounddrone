@@ -17,6 +17,20 @@ module.exports = {
           userId: 1,
           createdAt: new Date(),
           updatedAt: new Date()
+        },
+        {
+          name: 'Italo',
+          imageUrl: 'https://www.radio.net/images/broadcasts/f9/d8/16091/1/c300.png',
+          userId: 2,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          name: 'Down The Rabbit Hole',
+          imageUrl: 'https://pyxis.nymag.com/v1/imgs/d2f/385/b60cdf50010b166663c19d7f35ddfa0f5a-29-rabbit-hole.rsquare.w700.jpg',
+          userId: 2,
+          createdAt: new Date(),
+          updatedAt: new Date()
         }
     ], {});
  

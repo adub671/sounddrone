@@ -34,7 +34,7 @@ module.exports = {
         {
           name: 'E-Tekk - Get Back To Real Rap',
           audioUrl: 'https://hotmixes.net/mixes/e/E-TeKK.-.Get.Back.To.Real.Rap.80s.Megamix.mp3',
-          imgUrl: 'https://i.imgur.com/Cdf2xq3.jpeg',
+          imgUrl: 'https://variety.com/wp-content/uploads/2021/03/21-Savage-Spiral.jpg?w=681&h=383&crop=1',
           userId: 1,
           externalLink: 'https://hotmixes.net/',
           createdAt: new Date(),
@@ -42,9 +42,11 @@ module.exports = {
         },        {
           name: 'EDMX Boogaloo Mix',
           audioUrl: 'https://hotmixes.net/mixes/e/EDMX-Boogaloo.Mix.mp3',
-          imgUrl: 'https://i.imgur.com/Cdf2xq3.jpeg',
+          imgUrl: 'https://i.discogs.com/MkcABQ91ZLdQEPNsnnsepT-z6UukG_pQiLhkKZ65enE/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1NzY2/NC0xMjg5MTc3NjM0/LmpwZWc.jpeg',
           userId: 1,
           externalLink: 'https://hotmixes.net/',
+
+          
           createdAt: new Date(),
           updatedAt: new Date()
         },        {
