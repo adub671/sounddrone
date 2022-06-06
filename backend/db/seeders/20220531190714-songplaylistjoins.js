@@ -16,6 +16,18 @@ module.exports = {
           songId: 3,
           playlistId: 1
         },
+        {
+          songId: 14,
+          playlistId: 3
+        },
+        {
+          songId: 5,
+          playlistId: 2
+        },
+        {
+          songId: 10,
+          playlistId: 2
+        },
     ], {});
 
   },

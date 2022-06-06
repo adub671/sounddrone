@@ -38,11 +38,13 @@ export default function AddToPlaylist({closeModal, songId}) {
     <h1>ADD TO PLAYLIST</h1>
         <ul>
             {keyArr.map(playlistId=>{return (
+            <div className="add-to-playlist-container"> 
             <li key={playlistId}>
                 <img className='playlist-image' src={playlists[playlistId].imageUrl} alt={playlists[playlistId].name}></img>
-                {playlists[playlistId].name} 
+                <div>{playlists[playlistId].name} </div>
                 <button value={playlistId} onClick={handleAddToPlaylist} className='add-to-playlist-button' songId={songId}>ADD TO PLAYLIST</button>
             </li> 
+            </div>   
             )})}
         </ul>
     </form>
