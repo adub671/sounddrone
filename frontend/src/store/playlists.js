@@ -1,45 +1,39 @@
 // frontend/src/store/playlists.js
-import { csrfFetch } from './csrf';
+import { csrfFetch } from "./csrf";
 
-
-
-const LOAD_PLAYLIST = 'playlist/loadPlaylist'
-const ADD_PLAYLIST = 'playlist/addPlaylist';
-const DELETE_PLAYLIST= 'playlist/removePlaylist';
-const UPDATE_PLAYLIST= 'playlist/updatePlaylist';
+const LOAD_PLAYLIST = "playlist/loadPlaylist";
+const ADD_PLAYLIST = "playlist/addPlaylist";
+const DELETE_PLAYLIST = "playlist/removePlaylist";
+const UPDATE_PLAYLIST = "playlist/updatePlaylist";
 // const LOAD_PLAYLIST_SONGS = 'playlist/loadPlaylistSongs'
 
-
-
-const loadPlaylist = playlists=> {
-    return {
-        type: LOAD_PLAYLIST,
-        playlists
-    }
-}
-
+const loadPlaylist = (playlists) => {
+  return {
+    type: LOAD_PLAYLIST,
+    playlists,
+  };
+};
 
 const addPlaylist = (playlist) => {
-    return {
-        type: ADD_PLAYLIST,
-        playlist
-    }
-}
-
+  return {
+    type: ADD_PLAYLIST,
+    playlist,
+  };
+};
 
 const updatePlaylist = (playlist) => {
   return {
-      type: UPDATE_PLAYLIST,
-      playlist
-  }
-}
+    type: UPDATE_PLAYLIST,
+    playlist,
+  };
+};
 
 const removePlaylist = (playlistId) => {
   return {
     type: DELETE_PLAYLIST,
-    playlistId
-  }
-}
+    playlistId,
+  };
+};
 
 // const loadPlaylistSongs = (playlistId) => {
 //   return {
@@ -47,8 +41,6 @@ const removePlaylist = (playlistId) => {
 //     playlistId
 //   }
 // }
-
-
 
 //  ADD PLAYLIST
 export const createPlaylist = (playlist) => async (dispatch) => {
@@ -59,7 +51,7 @@ export const createPlaylist = (playlist) => async (dispatch) => {
     body: JSON.stringify({
       name,
       imageUrl,
-      userId
+      userId,
     }),
   });
   const data = await response.json();
@@ -67,40 +59,37 @@ export const createPlaylist = (playlist) => async (dispatch) => {
   return response;
 };
 
-
 //GET ALL PLAYLISTS
-export const getAllPlaylists = () => async(dispatch) => {
-    const response = await csrfFetch('/api/playlists')
-    const playlists = await response.json();
-    dispatch(loadPlaylist(playlists))
-}
+export const getAllPlaylists = () => async (dispatch) => {
+  const response = await csrfFetch("/api/playlists");
+  const playlists = await response.json();
+  dispatch(loadPlaylist(playlists));
+};
 
 //GET MY PLAYLISTS (LOGGED IN USER)
 
-export const getMyPlaylists = (userId) => async(dispatch) => {
-  console.log('getMYPLAYLIST', userId)
-  const response = await csrfFetch('/api/playlists/mine', {
+export const getMyPlaylists = (userId) => async (dispatch) => {
+  console.log("getMYPLAYLIST", userId);
+  const response = await csrfFetch("/api/playlists/mine", {
     method: "POST",
     body: JSON.stringify({
-      userId: userId
-    })
+      userId: userId,
+    }),
   });
   const playlists = await response.json();
-  dispatch(loadPlaylist(playlists))
-}
-
+  dispatch(loadPlaylist(playlists));
+};
 
 //REMOVE  PLAYLIST
 
-export const deletePlaylist = (playlistId) => async(dispatch) => {
-  const response = await csrfFetch(`/api/playlists`,
-  {
+export const deletePlaylist = (playlistId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/playlists`, {
     method: "DELETE",
-    body: JSON.stringify({playlistId})
-  })
-  dispatch(removePlaylist(playlistId))
-  return response
-}
+    body: JSON.stringify({ playlistId }),
+  });
+  dispatch(removePlaylist(playlistId));
+  return response;
+};
 
 //ADD SONG TO PLAYLIST
 export const addSongToPlaylist = (songId, playlistId) => async (dispatch) => {
@@ -108,7 +97,7 @@ export const addSongToPlaylist = (songId, playlistId) => async (dispatch) => {
     method: "POST",
     body: JSON.stringify({
       songId,
-      playlistId
+      playlistId,
     }),
   });
   const data = await response.json();
@@ -118,32 +107,29 @@ export const addSongToPlaylist = (songId, playlistId) => async (dispatch) => {
 
 //REMOVE SONG FROM  PLAYLIST
 
-export const deleteSongFromAllPlaylists = (songId) => async(dispatch) => {
-  const response = await csrfFetch(`/api/songplaylist/delete/all`,
-  {
+export const deleteSongFromAllPlaylists = (songId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/songplaylist/delete/all`, {
     method: "DELETE",
-    body: JSON.stringify({songId})
-  })
+    body: JSON.stringify({ songId }),
+  });
   // dispatch(removePlaylist(playlistId)) getAllPlaylists?
 
-   return response
-}
+  return response;
+};
 
 //REMOVE PLAYLIST FROM SONG (CLEAR PLAYLIST)
-export const clearPlaylist = (playlistId) => async(dispatch) => {
-  const response = await csrfFetch(`/api/songplaylist/delete/${playlistId}`,
-  {
+export const clearPlaylist = (playlistId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/songplaylist/delete/${playlistId}`, {
     method: "DELETE",
-    body: JSON.stringify({playlistId})
-  })
+    body: JSON.stringify({ playlistId }),
+  });
 
-   return response;
-}
+  return response;
+};
 
 //EDIT PLAYLIST
 
 export const editPlaylist = (playlist) => async (dispatch) => {
-
   const { name, imageUrl, userId, id } = playlist;
   const response = await csrfFetch("/api/playlists", {
     method: "PUT",
@@ -151,7 +137,7 @@ export const editPlaylist = (playlist) => async (dispatch) => {
       name,
       imageUrl,
       userId,
-      id
+      id,
     }),
   });
   const data = await response.json();
@@ -159,38 +145,36 @@ export const editPlaylist = (playlist) => async (dispatch) => {
   return response;
 };
 
-
-
-//SESSION REDUCER & INITIAL PARAMS 
-const initialState = { }; 
+//SESSION REDUCER & INITIAL PARAMS
+const initialState = {};
 
 const playlistReducer = (state = initialState, action) => {
-
   let newState;
   switch (action.type) {
     case LOAD_PLAYLIST:
-        const allPlaylists = {};
-        action.playlists.forEach(playlist=>{
-            allPlaylists[playlist.id] = playlist
-        })
-        return allPlaylists
+      const allPlaylists = {};
+      action.playlists.forEach((playlist) => {
+        allPlaylists[playlist.id] = playlist;
+      });
+      return allPlaylists;
     case ADD_PLAYLIST:
-        newState = {
-        ...state, [action.playlist.id]: action.playlist
-    }
-    return newState; 
+      newState = {
+        ...state,
+        [action.playlist.id]: action.playlist,
+      };
+      return newState;
     case DELETE_PLAYLIST:
       newState = { ...state };
       delete newState[action.playlistId];
       return newState;
     case UPDATE_PLAYLIST:
-        newState = {...state};
-        newState[action.playlist.id]=action.playlist
-        return newState;
+      newState = { ...state };
+      newState[action.playlist.id] = action.playlist;
+      return newState;
     // case LOAD_PLAYLIST_SONGS:
     //   newState = {...state};
     //   newState[action.playlist.id].playlist
-        return newState
+    // return newState
     default:
       return state;
   }
