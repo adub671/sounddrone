@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+
 import * as playlistActions from "../../store/playlists";
-import AddPlaylistForm from "./AddPlaylistForm";
+
 import PlaylistFormModal from "./PlayListModal";
 import AudioPlayer from "react-h5-audio-player";
 

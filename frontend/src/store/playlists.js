@@ -92,7 +92,7 @@ export const deletePlaylist = (playlistId) => async (dispatch) => {
 };
 
 //ADD SONG TO PLAYLIST
-export const addSongToPlaylist = (songId, playlistId) => async (dispatch) => {
+export const addSongToPlaylist = (songId, playlistId) => async () => {
   const response = await csrfFetch(`/api/songplaylist/add`, {
     method: "POST",
     body: JSON.stringify({
@@ -100,14 +100,14 @@ export const addSongToPlaylist = (songId, playlistId) => async (dispatch) => {
       playlistId,
     }),
   });
-  const data = await response.json();
+  // const data = await response.json();
   // dispatch(addPlaylist(data));
   return response;
 };
 
 //REMOVE SONG FROM  PLAYLIST
 
-export const deleteSongFromAllPlaylists = (songId) => async (dispatch) => {
+export const deleteSongFromAllPlaylists = (songId) => async () => {
   const response = await csrfFetch(`/api/songplaylist/delete/all`, {
     method: "DELETE",
     body: JSON.stringify({ songId }),
@@ -118,7 +118,7 @@ export const deleteSongFromAllPlaylists = (songId) => async (dispatch) => {
 };
 
 //REMOVE PLAYLIST FROM SONG (CLEAR PLAYLIST)
-export const clearPlaylist = (playlistId) => async (dispatch) => {
+export const clearPlaylist = (playlistId) => async () => {
   const response = await csrfFetch(`/api/songplaylist/delete/${playlistId}`, {
     method: "DELETE",
     body: JSON.stringify({ playlistId }),
@@ -150,9 +150,9 @@ const initialState = {};
 
 const playlistReducer = (state = initialState, action) => {
   let newState;
+  const allPlaylists = {};
   switch (action.type) {
     case LOAD_PLAYLIST:
-      const allPlaylists = {};
       action.playlists.forEach((playlist) => {
         allPlaylists[playlist.id] = playlist;
       });

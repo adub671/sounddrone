@@ -62,7 +62,7 @@ function LoginForm({title, closeModal}) {
           </div>
         </label>
         <button id="login-button" type="submit">LOGIN</button>
-        <button id="login-button" type="button" class='demo' onClick={demoLogin}>DEMO USER LOGIN</button>
+        <button id="login-button" type="button" className='demo' onClick={demoLogin}>DEMO USER LOGIN</button>
         
       </form>
     </div>
