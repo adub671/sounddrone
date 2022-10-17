@@ -15,6 +15,9 @@ export default function SongTile({ song, setAudioUrl }) {
         className="song-tile-image"
       />
       <div className="song-tile-name">{song.name}</div>
+      <div className="play-button">
+        <div className="play-pause"></div>
+      </div>
     </div>
   );
 }

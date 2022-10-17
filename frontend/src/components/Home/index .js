@@ -13,7 +13,7 @@ export default function Home() {
   const user = useSelector((state) => state.session.user);
   const songs = useSelector((state) => state.songs);
   const songsArr = Object.values(songs);
-  const slicedSongsArr = songsArr.slice(0, 12);
+  const slicedSongsArr = songsArr.slice(0, 18);
   const [audioUrl, setAudioUrl] = useState("");
 
   useEffect(() => {

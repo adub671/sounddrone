@@ -1,39 +1,74 @@
-
 .song-tile {
-    height: 200px;
-    width: 135px;
+  max-height: 200px;
+  width: 135px;
 }
 
 .song-tile:hover {
-   border: 3px solid black;
+  border: 3px solid black;
 }
 
 .song-tile-name {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .song-tile-image {
-    height: 135px;
-    width: 135px;
-    object-fit: cover;
+  height: 135px;
+  width: 135px;
+  object-fit: cover;
 }
 
 .home-song-tiles {
-    display: grid;
-    border: none;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 220px 200px;
-    padding-top: 50px;
-    padding-inline: 50px;
-    padding-bottom: 50px;
-    height: 500px;
-    
-
+  display: grid;
+  border: none;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 220px 200px;
+  padding-top: 50px;
+  padding-inline: 50px;
+  padding-bottom: 50px;
+  height: 500px;
 }
 
 .song-tile-name {
-    height:46px;
-    overflow: hidden;
-    font-size: 12px;
+  height: 46px;
+  overflow: hidden;
+  font-size: 12px;
 }
 
+.play-button {
+  background-color: orangered;
+  display: flex;
+  position: relative;
+  top: -142.5px;
+  left: 42.5px;
+  width: 50px;
+  height: 50px;
+  white-space: nowrap;
+  border-radius: 100%;
+}
+
+.play-pause {
+  position: relative;
+  top: 7.5px;
+  left: 15px;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 25px;
+  height: 25px;
+  border-width: 17px 0px 17px 25px;
+  border-color: orangered orangered orangered white;
+  border-style: solid;
+}
+
+/* .play-pause {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin: auto;
+  box-sizing: border-box;
+
+  height: 25px;
+  border-width: 0px 0px 0px 15px;
+  border-color: orangered orangered orangered white;
+  border-style: double;
+} */
