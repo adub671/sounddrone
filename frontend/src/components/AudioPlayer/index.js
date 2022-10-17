@@ -4,18 +4,21 @@ import AudioPlayer from "react-h5-audio-player";
 import "./AudioPlayer.css";
 
 export default function AppAudioPlayer() {
-  const { song } = useContext(AudioContext);
+  const { currentSong, player } = useContext(AudioContext);
   return (
     <div className="app-audio-player-container home-audio-player">
       <div className="audio-player">
         <AudioPlayer
-          src={song.audioUrl}
+          src={currentSong.audioUrl}
           onPlay={() => {
-            console.log(song.name, "is playing");
+            console.log(currentSong.name, "is playing");
           }}
+          ref={player}
         />
       </div>
-      <div className="now-playing-container">Now Playing: {song.name}</div>
+      <div className="now-playing-container">
+        Now Playing: {currentSong.name}
+      </div>
     </div>
   );
 }
