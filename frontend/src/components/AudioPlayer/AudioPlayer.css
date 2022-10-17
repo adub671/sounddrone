@@ -1,0 +1,17 @@
+.now-playing-container {
+  background-color: red;
+}
+
+.audio-player {
+  width: 100%;
+}
+
+.app-audio-player-container {
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+.play-pause {
+  display: block;
+  /* position: absolute; */
+}
