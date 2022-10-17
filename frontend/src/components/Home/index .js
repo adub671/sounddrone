@@ -60,9 +60,9 @@ export default function Home() {
             )}
           </div>
         </div>
-        <div className="home-audio-player">
+        {/* <div className="home-audio-player">
           <AudioPlayer src={audioUrl} />
-        </div>
+        </div> */}
       </div>
     </>
   );

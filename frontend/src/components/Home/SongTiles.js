@@ -1,12 +1,14 @@
 import "./SongTiles.css";
-import React from "react";
+import React, { useContext } from "react";
+import { AudioContext } from "../../context/Audio";
 
-export default function SongTile({ song, setAudioUrl }) {
+export default function SongTile({ song }) {
+  const { setAudioUrl } = useContext(AudioContext);
   return (
     <div
       className="song-tile"
       onClick={() => {
-        setAudioUrl();
+        setAudioUrl(song.audioUrl);
       }}
     >
       <img
