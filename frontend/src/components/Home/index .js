@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import AudioPlayer from "react-h5-audio-player";
 import "./Home.css";
 
 import LoginFormModal from "../LoginFormModal";
@@ -14,7 +13,6 @@ export default function Home() {
   const songs = useSelector((state) => state.songs);
   const songsArr = Object.values(songs);
   const slicedSongsArr = songsArr.slice(0, 18);
-  const [audioUrl, setAudioUrl] = useState("");
 
   useEffect(() => {
     dispatch(songActions.getAllSongs());
@@ -45,15 +43,7 @@ export default function Home() {
           <div className="home-song-tiles">
             {songs ? (
               slicedSongsArr.map((song, idx) => {
-                return (
-                  <SongTile
-                    key={idx}
-                    song={song}
-                    setAudioUrl={() => {
-                      setAudioUrl(song.audioUrl);
-                    }}
-                  />
-                );
+                return <SongTile key={idx} song={song} />;
               })
             ) : (
               <div>Loading...</div>

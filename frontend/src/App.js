@@ -8,8 +8,8 @@ import Navigation from "./components/Navigation";
 import Playlists from "./components/Playlists";
 import Songs from "./components/Songs";
 import Home from "./components/Home/index ";
-import AudioPlayer from "react-h5-audio-player";
 import { AudioContext } from "./context/Audio";
+import AppAudioPlayer from "./components/AudioPlayer";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ function App() {
           </Route>
         </Switch>
       )}
-      <AudioPlayer src={audioUrl} />
+      <AppAudioPlayer />
     </>
   );
 }

@@ -3,12 +3,12 @@ import React, { useContext } from "react";
 import { AudioContext } from "../../context/Audio";
 
 export default function SongTile({ song }) {
-  const { setAudioUrl } = useContext(AudioContext);
+  const { setSong } = useContext(AudioContext);
   return (
     <div
       className="song-tile"
       onClick={() => {
-        setAudioUrl(song.audioUrl);
+        setSong(song);
       }}
     >
       <img
