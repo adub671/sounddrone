@@ -5,7 +5,6 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 const db = require("../../db/models");
-const user = require("../../db/models/user");
 const router = express.Router();
 
 const validatePlaylist = [
@@ -82,8 +81,6 @@ router.delete(
 router.get(
   "/:playlistId",
   asyncHandler(async (req, res) => {
-    console.log(req.session, "reqUser--");
-    const playlistId = req.params.playlistId;
     const songsInPlaylist = await db.Playlist.findAll({
       include: { model: db.Song },
     });

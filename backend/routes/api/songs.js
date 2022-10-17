@@ -5,7 +5,6 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 const db = require("../../db/models");
-const user = require("../../db/models/user");
 const router = express.Router();
 
 const validateSongs = [
@@ -32,7 +31,7 @@ const validateSongs = [
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const userId = req;
+    // const userId = req;
     const songs = await db.Song.findAll();
     return res.json(songs);
   })

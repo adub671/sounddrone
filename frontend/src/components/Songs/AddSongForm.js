@@ -55,11 +55,10 @@ function AddSongForm({ closeModal }) {
         Song Name
         <div>
           <input
-            className="form-input"
+            className="form-input signup-input"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="signup-input"
             required
           />
         </div>
@@ -68,11 +67,10 @@ function AddSongForm({ closeModal }) {
         Audio URL
         <div>
           <input
-            className="form-input"
+            className="form-input signup-input"
             type="text"
             value={audioUrl}
             onChange={(e) => setAudioUrl(e.target.value)}
-            className="signup-input"
             required
           />
         </div>
@@ -81,11 +79,10 @@ function AddSongForm({ closeModal }) {
         Image Url
         <div>
           <input
-            className="form-input"
+            className="form-input signup-input"
             type="text"
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
-            className="signup-input"
             required
           />
         </div>
