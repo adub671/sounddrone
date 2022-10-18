@@ -1,9 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AudioContext } from "../../context/Audio";
 import AudioPlayer from "react-h5-audio-player";
 import "./AudioPlayer.css";
+import { useDispatch, useSelector } from "react-redux";
+import * as sessionActions from "../../store/session";
 
 export default function AppAudioPlayer() {
+  const dispatch = useDispatch();
+  const allUsers = useSelector((state) => state.session.allUsers);
+  console.log(allUsers, "all users");
+
+  useEffect(() => {
+    dispatch(sessionActions.userList());
+  }, [dispatch]);
   const { currentSong, player } = useContext(AudioContext);
   return (
     <div className="app-audio-player-container home-audio-player">
@@ -29,7 +38,7 @@ export default function AppAudioPlayer() {
               ) : null}
             </div>
             <div className="now-playing-title">
-              <span>{currentSong.userId}</span>
+              <span>{allUsers[currentSong.userId - 1].username}</span>
               <span>{currentSong.name}</span>
             </div>
           </>
