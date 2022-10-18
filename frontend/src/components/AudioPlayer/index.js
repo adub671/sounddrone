@@ -17,7 +17,29 @@ export default function AppAudioPlayer() {
         />
       </div>
       <div className="now-playing-container">
-        Now Playing: {currentSong.name}
+        {Object.keys(currentSong).length !== 0 ? (
+          <>
+            <div className="now-playing-image-container">
+              {currentSong.imgUrl ? (
+                <img
+                  src={currentSong.imgUrl}
+                  alt="now playing image"
+                  className="now-playing-image"
+                />
+              ) : null}
+            </div>
+            <div className="now-playing-title">
+              <span>{currentSong.userId}</span>
+              <span>{currentSong.name}</span>
+            </div>
+          </>
+        ) : (
+          <div className="now-playing-placeholder">
+            <span>Select A Song To Play</span>
+            <br />
+            <span className="sounddrone-audioplayer">SOUNDDRONE</span>
+          </div>
+        )}
       </div>
     </div>
   );
