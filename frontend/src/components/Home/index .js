@@ -32,8 +32,6 @@ export default function Home() {
   const user = useSelector((state) => state.session.user);
   const songs = useSelector((state) => state.songs);
   const songsArr = Object.values(songs);
-  // const rando = shuffle(songsArr);
-  // const slicedSongsArr = rando.slice(0, 18);
 
   const [randomArray, setRandomArray] = useState([]);
 
@@ -78,6 +76,7 @@ export default function Home() {
               <div>Loading...</div>
             )}
           </div>
+          <div className="page-bottom-spacer"></div>
         </div>
       </div>
     </>

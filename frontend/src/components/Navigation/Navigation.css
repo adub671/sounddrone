@@ -41,13 +41,6 @@ a {
   width: fit-content;
 }
 
-.navlink-container > span {
-  font-family: "Drone";
-  font-weight: bolder;
-  font-size: 40px;
-  margin-right: 50px;
-}
-
 .navlink-container {
   width: fit-content;
   height: 100%;
@@ -109,4 +102,16 @@ img {
 
 .dropdown-logout > button {
   background-color: yellow;
+}
+
+.nav-logo {
+  font-family: "Drone" !important;
+  font-weight: bolder !important;
+  font-size: 40px !important;
+  margin-right: 50px !important;
+  background-color: rgb(44, 43, 43) !important;
+}
+
+.page-bottom-spacer {
+  height: 150px;
 }
