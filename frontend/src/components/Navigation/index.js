@@ -26,7 +26,9 @@ function Navigation({ isLoaded }) {
   return (
     <nav>
       <div className="navlink-container">
-        <span>soundDrone</span>
+        <NavLink className="nav-logo" exact to="/">
+          soundDrone
+        </NavLink>
         <NavLink className="navlink" exact to="/">
           HOME
         </NavLink>

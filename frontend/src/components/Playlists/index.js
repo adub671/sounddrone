@@ -35,6 +35,7 @@ export default function Playlists() {
           })}
         </ul>
       </div>
+      <div className="page-bottom-spacer"></div>
     </div>
   );
 }

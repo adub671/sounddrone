@@ -1,20 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import AudioPlayer from "react-h5-audio-player";
 import "./Home.css";
 
 import LoginFormModal from "../LoginFormModal";
 import SongTile from "./SongTiles";
 import * as songActions from "../../store/songs";
 
+function shuffle(array) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
+
 export default function Home() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const songs = useSelector((state) => state.songs);
   const songsArr = Object.values(songs);
-  const slicedSongsArr = songsArr.slice(0, 12);
-  const [audioUrl, setAudioUrl] = useState("");
+
+  const [randomArray, setRandomArray] = useState([]);
+
+  useEffect(() => {
+    if (songsArr.length) {
+      setRandomArray(shuffle(songsArr).slice(0, 18));
+    }
+  }, [songs]);
 
   useEffect(() => {
     dispatch(songActions.getAllSongs());
@@ -44,24 +69,14 @@ export default function Home() {
           </div>
           <div className="home-song-tiles">
             {songs ? (
-              slicedSongsArr.map((song, idx) => {
-                return (
-                  <SongTile
-                    key={idx}
-                    song={song}
-                    setAudioUrl={() => {
-                      setAudioUrl(song.audioUrl);
-                    }}
-                  />
-                );
+              randomArray.map((song, idx) => {
+                return <SongTile key={idx} song={song} />;
               })
             ) : (
               <div>Loading...</div>
             )}
           </div>
-        </div>
-        <div className="home-audio-player">
-          <AudioPlayer src={audioUrl} />
+          <div className="page-bottom-spacer"></div>
         </div>
       </div>
     </>

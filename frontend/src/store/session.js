@@ -1,8 +1,9 @@
 // frontend/src/store/session.js
-import { csrfFetch } from './csrf';
+import { csrfFetch } from "./csrf";
 
-const SET_USER = 'session/setUser';
-const REMOVE_USER = 'session/removeUser';
+const SET_USER = "session/setUser";
+const REMOVE_USER = "session/removeUser";
+const ALL_USERS = "session/getAllUsers";
 
 const setUser = (user) => {
   return {
@@ -17,11 +18,18 @@ const removeUser = () => {
   };
 };
 
-//LOGIN 
+const allUsers = (users) => {
+  return {
+    type: ALL_USERS,
+    payload: users,
+  };
+};
+
+//LOGIN
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
-  const response = await csrfFetch('/api/session', {
-    method: 'POST',
+  const response = await csrfFetch("/api/session", {
+    method: "POST",
     body: JSON.stringify({
       credential,
       password,
@@ -32,11 +40,10 @@ export const login = (user) => async (dispatch) => {
   return response;
 };
 
-
 //RESTORE USER
 
-export const restoreUser = () => async dispatch => {
-  const response = await csrfFetch('/api/session');
+export const restoreUser = () => async (dispatch) => {
+  const response = await csrfFetch("/api/session");
   const data = await response.json();
   dispatch(setUser(data.user));
   return response;
@@ -59,16 +66,23 @@ export const signup = (user) => async (dispatch) => {
   return response;
 };
 
-
 //LOGOUT USER
 export const logout = () => async (dispatch) => {
-  const response = await csrfFetch('/api/session', {
-    method: 'DELETE',
+  const response = await csrfFetch("/api/session", {
+    method: "DELETE",
   });
   dispatch(removeUser());
   return response;
 };
 
+//GET LIST OF ALL USERS
+export const userList = () => async (dispatch) => {
+  const response = await csrfFetch("/api/users", {
+    method: "GET",
+  });
+  const users = await response.json();
+  dispatch(allUsers(users));
+};
 
 //SESSION REDUCER & INITIAL PARAMS (SET TO NULL BC NO ONE LOGGED IN)
 const initialState = { user: null };
@@ -83,6 +97,10 @@ const sessionReducer = (state = initialState, action) => {
     case REMOVE_USER:
       newState = Object.assign({}, state);
       newState.user = null;
+      return newState;
+    case ALL_USERS:
+      newState = Object.assign({}, state);
+      newState.allUsers = action.payload;
       return newState;
     default:
       return state;
