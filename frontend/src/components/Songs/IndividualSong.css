@@ -5,7 +5,10 @@
   height: 150px;
   background-color: white;
   margin-top: 50px;
-  margin-bottom: 50px;
+
+  padding: 5px;
+  border: solid gray 1px;
+  border-radius: 5px;
 }
 
 .song-info-container {
@@ -18,7 +21,7 @@
 }
 
 .play-pause-button {
-  margin-top: 20px;
+  margin-top: 15px;
   width: 50px;
   height: 50px;
 }
@@ -44,7 +47,19 @@
 
 .song-action-buttons {
   width: 500px;
-  margin-bottom: 10px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.song-artist-name {
+  margin-left: 100px;
+}
+
+.song-artist-name:hover {
+  color: gray;
+}
+
+.song-name:hover {
+  color: gray;
 }

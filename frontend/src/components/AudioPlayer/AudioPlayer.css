@@ -11,6 +11,13 @@
   grid-template-columns: 80% 20%;
 }
 
+.fixed-audio-container {
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  border-top: 1px transparent black;
+}
+
 .play-pause {
   display: block;
   /* position: absolute; */
@@ -72,4 +79,16 @@
   font-family: "Drone";
   font-weight: bold;
   font-size: 20px;
+}
+
+.queue-container {
+  display: flex;
+  flex-direction: column;
+  border: solid black;
+  padding-left: 15px;
+  background-color: gray;
+}
+
+.next-songs {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }

@@ -16,13 +16,6 @@ export default function Songs() {
   // const user = useSelector((state) => state.session.user);
 
   const songArr = Object.values(songs);
-  console.log(songArr, "songArray");
-
-  // const handleDelete = (e) => {
-  //   const songId = e.target.value;
-  //   dispatch(playlistActions.deleteSongFromAllPlaylists(songId));
-  //   dispatch(songActions.deleteSong(songId));
-  // };
 
   useEffect(() => {
     dispatch(songActions.getAllSongs());
@@ -39,9 +32,11 @@ export default function Songs() {
           <h1>Discover Tracks</h1>
           <SongFormModal type="new" />
         </div>
-        {songArr.map((song, i) => {
-          return <IndividualSong song={song} key={i} />;
-        })}
+        <div className="songs-container">
+          {songArr.map((song, i) => {
+            return <IndividualSong song={song} key={i} />;
+          })}
+        </div>
         {/* <ul>
           {keyArr.map((songId, i) => {
             return (

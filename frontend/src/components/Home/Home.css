@@ -1,84 +1,78 @@
 .content-container {
-    width: 1080px;
-    background-color: white;
-    
+  width: 1080px;
+  background-color: white;
 }
 
-html, body {
-    height: 100%
+html,
+body {
+  height: 100%;
 }
 
 .page-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    background-color: rgb(242,242,242);
-    min-height: 800px;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background-color: rgb(242, 242, 242);
+  min-height: 800px;
+  height: 100%;
 }
 
 .home-banner {
-    margin-top: 0px;
-    width: 1080px;
-    height: 400px;
-    background-image: url('../../images/banner.jpg');
-    display: flex;
-    align-items: center;
+  margin-top: 0px;
+  width: 1080px;
+  height: 400px;
+  background-image: url("../../images/banner.jpg");
+  display: flex;
+  align-items: center;
 }
 
 @font-face {
-    font-family: Drone;
-    src: url(../../images/Drone.ttf)
+  font-family: Drone;
+  src: url(../../images/Drone.ttf);
 }
 .banner-title {
-    background-color: rgb(255, 255, 255, 50%);
-    width: fit-content;
-    margin-left: 50px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-weight: 200;
-    
+  background-color: rgb(255, 255, 255, 50%);
+  width: fit-content;
+  margin-left: 50px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 200;
 }
 
 .sounddrone {
-    font-family: 'Drone';
-    font-weight: bold;
-    font-size: 50px;
+  font-family: "Drone";
+  font-weight: bold;
+  font-size: 50px;
 }
 
-.home-audio-player {
-    width: 100%;
-    position: fixed;
-    bottom: 0px;
-    border-top: 1px transparent black
+.user-buttons-logged-out,
+.user-buttons-logged-in {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 80%;
+  width: 45%;
 }
 
-.user-buttons-logged-out, .user-buttons-logged-in {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    height: 80%;
-    width: 45%;
-}
-
-.user-buttons-logged-out > a, .user-buttons-logged-out > span, .user-buttons-logged-in > a {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    /* border: 1.5px solid white; */
-    border: 0px;
-    margin-left: 40px;
-    border-radius: 5px;
-    height: 30px;
-    /* background-image: url(../../images/banner.jpg); */
-    /* background-position: center; */
-    /* -webkit-text-stroke-width: .1px;
+.user-buttons-logged-out > a,
+.user-buttons-logged-out > span,
+.user-buttons-logged-in > a {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  /* border: 1.5px solid white; */
+  border: 0px;
+  margin-left: 40px;
+  border-radius: 5px;
+  height: 30px;
+  /* background-image: url(../../images/banner.jpg); */
+  /* background-position: center; */
+  /* -webkit-text-stroke-width: .1px;
     -webkit-text-stroke-color: white; */
-    /* background-color: rgb(255,85,0); */
-    background-color: yellow;
-    color: black;
-    padding: 5px 20px;
-    display: flex;
-    align-items: center;
-    font-stretch: condensed;
-    font-weight: lighter;
+  /* background-color: rgb(255,85,0); */
+  background-color: yellow;
+  color: black;
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
+  font-stretch: condensed;
+  font-weight: lighter;
 }
-
