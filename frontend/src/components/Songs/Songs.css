@@ -1,44 +1,41 @@
-.song-image {
+/* .song-image {
     height: 150px;
     width: 150px;
     object-fit: cover;
     box-shadow: 0 0 3px 0 rgb(0 0 0 / 20%);
 
-}
+} */
 
-.audio-player-container {
+/* .audio-player-container {
     width: 500px;
     height: 90px;
-}
+} */
 
-div.user-song-buttons > button  {
+/* div.user-song-buttons > button  {
     background-color: yellow;
     height: 60%;
     margin: auto;
     border-radius: 8px;
-}
-
+} */
 
 .header {
-    height: 100px;
-    width: 1080px;
-    margin-left: auto;
-    margin-right: auto;
-    display: grid;
-    grid-template-columns: 80% 20%;
-    margin-bottom: 0px;
+  height: 100px;
+  width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  margin-bottom: 0px;
 
+  text-align: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: lighter;
 
-    
-    text-align: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-weight: lighter;
-    
-    background-image: url('../../images/banner.jpg');
-    background-position: center;
+  background-image: url("../../images/banner.jpg");
+  background-position: center;
 }
 
-.user-song-buttons {
+/* .user-song-buttons {
 
     width: 650px;
     display: flex;
@@ -51,8 +48,8 @@ div.user-song-buttons > button  {
 .name-and-player-container {
     width: 600px;
     height: 150px;
-}
-
+} */
+/* 
 .song {
     display: grid;
     grid-template-columns: 150px 1fr;
@@ -73,8 +70,8 @@ div.user-song-buttons > button  {
     background-color: white;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     
-}
-
+} */
+/* 
 .song-list {
    margin-top: 20px;
    margin-bottom: 20px;
@@ -99,28 +96,24 @@ div.user-song-buttons > button  {
     align-items: center;
     width: 1080px;
     background-color: rgb(234, 231, 226);
-}
+} */
 
 .header > button {
-    /* margin-top: 20px; */
-    height: 50px;
-    
-    background-color: yellow;
-    border-radius: 5px;
-    margin-right: 50px;
-    border: none;
-    align-items: center;
-    margin-top: 15px;
-    
+  /* margin-top: 20px; */
+  height: 50px;
 
+  background-color: yellow;
+  border-radius: 5px;
+  margin-right: 50px;
+  border: none;
+  align-items: center;
+  margin-top: 15px;
 }
 
 .header > h1 {
-    background-color: rgb(225 225 225 / 50%) ;
-    width: fit-content;
-    margin-left: 250px;
-    padding-inline: 20px;
-    height: fit-content;
-    
+  background-color: rgb(225 225 225 / 50%);
+  width: fit-content;
+  margin-left: 250px;
+  padding-inline: 20px;
+  height: fit-content;
 }
-
