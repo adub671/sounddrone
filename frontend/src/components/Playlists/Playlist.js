@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { AudioContext } from "../../context/Audio";
 
 import * as playlistActions from "../../store/playlists";
 
 import PlaylistFormModal from "./PlayListModal";
 import AudioPlayer from "react-h5-audio-player";
+
+const playIconUrl =
+  "https://res.cloudinary.com/dy199z8qt/image/upload/v1663887398/songplay_tb28tn.png";
+const pauseIconUrl =
+  "https://res.cloudinary.com/dy199z8qt/image/upload/v1665680954/Eo_circle_deep-orange_pause.svg_zancav.png";
 
 export function Playlist({ playlistid }) {
   const dispatch = useDispatch();
@@ -12,6 +18,10 @@ export function Playlist({ playlistid }) {
   const user = useSelector((state) => state.session.user);
   const playlist = playlists[playlistid];
   const [audioUrl, setAudioUrl] = useState("");
+  const [isPlayOrPause, setPlayOrPause] = useState("play");
+  const { setSong, currentSong, player, songQueue, setSongQueue } =
+    useContext(AudioContext);
+
   const [playingName, setPlayingName] = useState("");
   useEffect(() => {
     dispatch(playlistActions.getAllPlaylists());
@@ -36,6 +46,15 @@ export function Playlist({ playlistid }) {
     setPlayingName(name);
     setAudioUrl(url);
   };
+
+  const handlePlayPlaylist = (playlist) => {
+    setSong(playlist.Songs[0]);
+    const newQueue = [...playlist.Songs];
+    console.log(newQueue);
+    newQueue.shift();
+    setSongQueue(newQueue);
+  };
+
   return (
     <>
       <div className="playlist-container">
@@ -46,33 +65,19 @@ export function Playlist({ playlistid }) {
               alt={playlist.name}
               className="playlist-image"
             ></img>
-            <div className="user-playlist-buttons">
-              {user && user.id === playlist.userId ? (
-                <>
-                  <PlaylistFormModal
-                    value={playlistid}
-                    id="playlist-edit-button"
-                    className="user-playlist-button"
-                  />
-                  <button
-                    value={playlistid}
-                    onClick={handleDelete}
-                    className="user-playlist-button"
-                    id="playlist-delete-button"
-                  >
-                    DELETE PLAYLIST
-                  </button>
-                </>
-              ) : null}
-            </div>
           </div>
           <div className="playlist-right-container">
-            <AudioPlayer src={audioUrl} autoPlayAfterSrcChange={false} />
+            {/* <AudioPlayer src={audioUrl} autoPlayAfterSrcChange={false} /> */}
             <div className="playlist-name">
-              <span className="playlist-name-text"> {playlist.name}: </span>
-              <div className="scrolling-container">
-                <span className="playing-name"> {playingName}</span>
+              <div className="play-button-container">
+                <img
+                  src={playIconUrl}
+                  onClick={() => {
+                    handlePlayPlaylist(playlist);
+                  }}
+                />
               </div>
+              <span className="playlist-name-text"> {playlist.name}</span>
             </div>
             <div className="playlist-songs-container">
               <ul>
@@ -83,7 +88,9 @@ export function Playlist({ playlistid }) {
                       id={idx}
                       songid={song.id}
                       key={idx}
-                      onClick={loadToPlayer}
+                      onClick={() => {
+                        setSong(song);
+                      }}
                     >
                       <div
                         className="playlist-song-container"
@@ -102,6 +109,25 @@ export function Playlist({ playlistid }) {
                   );
                 })}
               </ul>
+            </div>
+            <div className="user-playlist-buttons">
+              {user && user.id === playlist.userId ? (
+                <>
+                  <PlaylistFormModal
+                    value={playlistid}
+                    id="playlist-edit-button"
+                    className="user-playlist-button"
+                  />
+                  <button
+                    value={playlistid}
+                    onClick={handleDelete}
+                    className="user-playlist-button"
+                    id="playlist-delete-button"
+                  >
+                    DELETE PLAYLIST
+                  </button>
+                </>
+              ) : null}
             </div>
           </div>
           <div> </div>
