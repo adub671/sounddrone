@@ -48,11 +48,11 @@ export function Playlist({ playlistid }) {
   };
 
   const handlePlayPlaylist = (playlist) => {
-    setSong(playlist.Songs[0]);
     const newQueue = [...playlist.Songs];
     console.log(newQueue);
-    newQueue.shift();
+    const newSong = newQueue.shift();
     setSongQueue(newQueue);
+    setSong(newSong);
   };
 
   return (

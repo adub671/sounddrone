@@ -13,8 +13,15 @@ export default function AppAudioPlayer() {
 
   const onSongEnd = () => {
     setSong(songQueue[0]);
-    const newQueue = songQueue;
+    const newQueue = [...songQueue];
     newQueue.shift();
+    setSongQueue(newQueue);
+  };
+
+  const deleteFromQueue = (song) => {
+    const songInPlaylistIndex = songQueue.indexOf(song);
+    const newQueue = [...songQueue];
+    newQueue.splice(songInPlaylistIndex, 1);
     setSongQueue(newQueue);
   };
 
@@ -23,18 +30,29 @@ export default function AppAudioPlayer() {
   }, [dispatch]);
   return (
     <div className="fixed-audio-container">
-      <div className="queue-container">
-        <h1>NEXT UP:</h1>
-        <ul>
-          {songQueue.map((song, i) => {
-            return (
-              <li key={i} className="next-songs">
-                {song?.name}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      {songQueue.length === 0 ? null : (
+        <div className="queue-container">
+          <h1 className="next-up">NEXT UP: {songQueue[0]?.name} </h1>
+          <ul className="next-songs-container">
+            {songQueue.map((song, i) => {
+              return (
+                <li key={i} className="next-songs">
+                  <div>
+                    {song?.name}{" "}
+                    <img
+                      className="queue-x-icon"
+                      onClick={() => {
+                        deleteFromQueue(song);
+                      }}
+                      src="https://cdn-icons-png.flaticon.com/512/1828/1828774.png"
+                    />
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
       <div className="app-audio-player-container">
         <div className="audio-player">
           <AudioPlayer

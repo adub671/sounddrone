@@ -59,8 +59,10 @@ export default function IndividualSong({ song, key }) {
   const addToQueue = (song) => {
     if (songQueue.includes(song)) {
       alert("The Track Queue already includes" + song.name);
+    } else if (Object.keys(currentSong).length === 0) {
+      setSong(song);
     } else {
-      const newQueue = songQueue;
+      const newQueue = [...songQueue];
       newQueue.push(song);
       setSongQueue(newQueue);
     }
