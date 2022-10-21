@@ -30,7 +30,10 @@ app.use(
     policy: "cross-origin",
   })
 );
-
+app.use((req, res, next) => {
+  console.log("before app.use(csurf)");
+  next();
+});
 // Set the _csrf token and create req.csrfToken method
 app.use(
   csurf({
@@ -41,8 +44,11 @@ app.use(
     },
   })
 );
-
-app.use(routes);
+console.log("after app.use(csurf)");
+app.use((req, res, next) => {
+  console.log("before app.use(csurf)");
+  next();
+});
 
 //Unhandled Request Error
 app.use((_req, _res, next) => {
@@ -66,6 +72,7 @@ app.use((err, _req, _res, next) => {
 // Error formatter
 app.use((err, _req, res) => {
   res.status(err.status || 500);
+  console.log("THIS IS ERROR MESSAGE**", err.message);
   console.error(err);
   res.json({
     title: err.title || "Server Error",
