@@ -4,9 +4,12 @@ import { Modal } from "../../context/Modal";
 import AddSongForm from "./AddSongForm";
 import EditSongForm from "./EditSongForm";
 import AddToPlaylist from "./AddToPlaylist";
+import LoginForm from "../LoginFormModal/LoginForm";
+import { useSelector } from "react-redux";
 
 function SongFormModal({ type, songId, song }) {
   const [showModal, setShowModal] = useState(false);
+  const user = useSelector((state) => state.session.user);
 
   if (type === "new") {
     return (
@@ -19,11 +22,15 @@ function SongFormModal({ type, songId, song }) {
         </button>
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
-            <AddSongForm
-              closeModal={() => {
-                setShowModal(!showModal);
-              }}
-            />
+            {user ? (
+              <AddSongForm
+                closeModal={() => {
+                  setShowModal(!showModal);
+                }}
+              />
+            ) : (
+              <LoginForm title="Login To Add A Track" />
+            )}
           </Modal>
         )}
       </>

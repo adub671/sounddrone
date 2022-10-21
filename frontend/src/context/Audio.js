@@ -6,6 +6,7 @@ export default function AudioProvider({ children }) {
   const [audioUrl, setAudioUrl] = useState("");
   const [currentSong, setSong] = useState({});
   const [songQueue, setSongQueue] = useState([]);
+  const [playing, setPlaying] = useState(false);
   const player = useRef();
 
   return (
@@ -19,6 +20,8 @@ export default function AudioProvider({ children }) {
           player,
           songQueue,
           setSongQueue,
+          playing,
+          setPlaying,
         }}
       >
         {children}

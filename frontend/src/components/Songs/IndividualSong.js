@@ -16,13 +16,21 @@ export default function IndividualSong({ song, key }) {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.session.allUsers);
   const [isPlayOrPause, setPlayOrPause] = useState("play");
-  const { setSong, currentSong, player, songQueue, setSongQueue } =
+  const { setSong, currentSong, player, songQueue, setSongQueue, playing } =
     useContext(AudioContext);
   const user = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(sessionActions.userList());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (playing) {
+      setPlayOrPause("pause");
+    } else {
+      setPlayOrPause("play");
+    }
+  }, [playing]);
 
   const handlePlay = (song) => {
     setSong(song);

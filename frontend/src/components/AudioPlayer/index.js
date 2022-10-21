@@ -8,7 +8,7 @@ import * as sessionActions from "../../store/session";
 export default function AppAudioPlayer() {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.session.allUsers);
-  const { currentSong, player, songQueue, setSongQueue, setSong } =
+  const { currentSong, player, songQueue, setSongQueue, setSong, setPlaying } =
     useContext(AudioContext);
 
   const onSongEnd = () => {
@@ -23,6 +23,18 @@ export default function AppAudioPlayer() {
     const newQueue = [...songQueue];
     newQueue.splice(songInPlaylistIndex, 1);
     setSongQueue(newQueue);
+  };
+
+  const clickNext = () => {
+    const nextSong = songQueue[0];
+    const newQueue = [...songQueue];
+    newQueue.shift();
+    setSong(nextSong);
+    setSongQueue(newQueue);
+  };
+
+  const clickPrev = () => {
+    console.log("PREVIOUS CLICKED!!!!!!!!!");
   };
 
   useEffect(() => {
@@ -59,10 +71,22 @@ export default function AppAudioPlayer() {
             autoPlay
             src={currentSong.audioUrl}
             onPlay={() => {
+              setPlaying(true);
               console.log(currentSong.name, "is playing");
+            }}
+            onPause={() => {
+              setPlaying(false);
             }}
             onEnded={onSongEnd}
             ref={player}
+            showSkipControls={true}
+            showJumpControls={false}
+            onClickNext={() => {
+              clickNext();
+            }}
+            onClickPrevious={() => {
+              clickPrev();
+            }}
           />
         </div>
         <div className="now-playing-container">

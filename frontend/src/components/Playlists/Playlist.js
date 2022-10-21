@@ -5,7 +5,6 @@ import { AudioContext } from "../../context/Audio";
 import * as playlistActions from "../../store/playlists";
 
 import PlaylistFormModal from "./PlayListModal";
-import AudioPlayer from "react-h5-audio-player";
 
 const playIconUrl =
   "https://res.cloudinary.com/dy199z8qt/image/upload/v1663887398/songplay_tb28tn.png";
@@ -17,22 +16,26 @@ export function Playlist({ playlistid }) {
   const playlists = useSelector((state) => state.playlists);
   const user = useSelector((state) => state.session.user);
   const playlist = playlists[playlistid];
-  const [audioUrl, setAudioUrl] = useState("");
+  const [isCurrentlyPlaying, setIsCurrentlyPlaying] = useState(false);
   const [isPlayOrPause, setPlayOrPause] = useState("play");
-  const { setSong, currentSong, player, songQueue, setSongQueue } =
+  const { setSong, currentSong, player, songQueue, setSongQueue, playing } =
     useContext(AudioContext);
 
-  const [playingName, setPlayingName] = useState("");
   useEffect(() => {
     dispatch(playlistActions.getAllPlaylists());
   }, [dispatch]);
 
   useEffect(() => {
-    if (playlist.Songs) {
-      setAudioUrl(playlist?.Songs[0]?.audioUrl);
-      setPlayingName(playlist?.Songs[0]?.name);
+    if (songQueue.includes(playlist.Songs[playlist.Songs.length - 1])) {
+      setIsCurrentlyPlaying(true);
     }
-  }, [playlist.Songs]);
+
+    if (playlist.Songs.includes(currentSong)) {
+      setIsCurrentlyPlaying(true);
+    } else {
+      setIsCurrentlyPlaying(false);
+    }
+  }, [songQueue, currentSong]);
 
   const handleDelete = (e) => {
     const playlistId = e.target.value;
@@ -40,19 +43,28 @@ export function Playlist({ playlistid }) {
     dispatch(playlistActions.deletePlaylist(playlistId));
   };
 
-  const loadToPlayer = (e) => {
-    const url = e.target.attributes.url.value;
-    const name = e.target.attributes.name.value;
-    setPlayingName(name);
-    setAudioUrl(url);
+  const handlePlayPlaylist = (playlist) => {
+    if (playlist.Songs.length) {
+      const newQueue = [...playlist.Songs];
+      const newSong = newQueue.shift();
+      setSongQueue(newQueue);
+      setSong(newSong);
+      if (isPlayOrPause === "play") {
+        setPlayOrPause("pause");
+        player.current.audio.current.play();
+      } else {
+        setPlayOrPause("play");
+        player.current.audio.current.pause();
+      }
+    } else {
+      alert("There are no tracks in this playlist");
+    }
   };
 
-  const handlePlayPlaylist = (playlist) => {
-    const newQueue = [...playlist.Songs];
-    console.log(newQueue);
-    const newSong = newQueue.shift();
+  const addPlaylistToQueue = (playlist) => {
+    const newQueue = [...songQueue];
+    newQueue.push(...playlist.Songs);
     setSongQueue(newQueue);
-    setSong(newSong);
   };
 
   return (
@@ -71,7 +83,12 @@ export function Playlist({ playlistid }) {
             <div className="playlist-name">
               <div className="play-button-container">
                 <img
-                  src={playIconUrl}
+                  src={
+                    // isPlayOrPause === "play" ? playIconUrl : pauseIconUrl
+                    isPlayOrPause === "pause" && isCurrentlyPlaying
+                      ? pauseIconUrl
+                      : playIconUrl
+                  }
                   onClick={() => {
                     handlePlayPlaylist(playlist);
                   }}
@@ -128,6 +145,13 @@ export function Playlist({ playlistid }) {
                   </button>
                 </>
               ) : null}
+              <button
+                onClick={() => {
+                  addPlaylistToQueue(playlist);
+                }}
+              >
+                ADD TO SONG QUEUE
+              </button>
             </div>
           </div>
           <div> </div>
