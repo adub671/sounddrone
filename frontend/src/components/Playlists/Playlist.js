@@ -18,7 +18,7 @@ export function Playlist({ playlistid }) {
   const playlist = playlists[playlistid];
   const [isCurrentlyPlaying, setIsCurrentlyPlaying] = useState(false);
   const [isPlayOrPause, setPlayOrPause] = useState("play");
-  const { setSong, currentSong, player, songQueue, setSongQueue, playing } =
+  const { setSong, currentSong, player, songQueue, setSongQueue } =
     useContext(AudioContext);
 
   useEffect(() => {
