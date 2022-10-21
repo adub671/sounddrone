@@ -11,6 +11,13 @@
   grid-template-columns: 80% 20%;
 }
 
+.fixed-audio-container {
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  border-top: 1px transparent black;
+}
+
 .play-pause {
   display: block;
   /* position: absolute; */
@@ -22,6 +29,7 @@
   margin-right: 10px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 12px;
+  text-align: center;
 }
 
 .now-playing-image-container {
@@ -72,4 +80,89 @@
   font-family: "Drone";
   font-weight: bold;
   font-size: 20px;
+}
+
+.queue-container {
+  display: flex;
+  flex-direction: column;
+  border: solid 0.1px whitesmoke;
+  border-bottom: none;
+  padding-left: 15px;
+  background-color: white;
+  height: 50px;
+  width: 400px;
+  position: absolute;
+  right: 0px;
+  bottom: 95px;
+  padding-right: 40px;
+  border-top-left-radius: 5px;
+}
+
+.next-songs {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+
+  align-items: flex-end;
+}
+
+.queue-container:hover {
+  height: fit-content;
+  transition: height 5s;
+}
+.queue-container:hover .next-songs-container {
+  opacity: 1;
+  max-height: 500px;
+  /* transition: opacity 5s, max-height 1s; */
+}
+
+.next-up {
+  font-size: 20px;
+  height: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 50px;
+}
+
+.queue-x-icon {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  margin-left: 15px;
+}
+
+.next-songs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  max-height: 0px;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.next-songs:hover {
+  color: gray;
+  transition: all 0.5s ease-in-out;
+}
+
+.rhap_container {
+  background-image: url("../../images/banner.jpg");
+  $rhap_theme-color: black;
+}
+
+.rhap_time {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.rhap_main-controls {
+  background: rgba(245, 243, 243, 0.75);
+  border-radius: 5px;
+}
+.rhap_volume-container {
+  background: rgba(245, 243, 243, 0.75);
+  border-radius: 5px;
+  padding-right: 5px;
 }

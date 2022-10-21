@@ -2,24 +2,20 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as songActions from "../../store/songs";
-import * as playlistActions from "../../store/playlists";
+// import * as playlistActions from "../../store/playlists";
 
 import SongFormModal from "./SongModal";
 import "./Songs.css";
-import AudioPlayer from "react-h5-audio-player";
+
 import "react-h5-audio-player/lib/styles.css";
+import IndividualSong from "./IndividualSong";
 
 export default function Songs() {
   const dispatch = useDispatch();
   const songs = useSelector((state) => state.songs);
-  const user = useSelector((state) => state.session.user);
-  const keyArr = Object.keys(songs);
+  // const user = useSelector((state) => state.session.user);
 
-  const handleDelete = (e) => {
-    const songId = e.target.value;
-    dispatch(playlistActions.deleteSongFromAllPlaylists(songId));
-    dispatch(songActions.deleteSong(songId));
-  };
+  const songArr = Object.values(songs);
 
   useEffect(() => {
     dispatch(songActions.getAllSongs());
@@ -28,6 +24,7 @@ export default function Songs() {
   if (!songs) {
     return <h1>SONGS NOT FOUND / NO SONGS EXIST</h1>;
   }
+
   return (
     <div className="page-container">
       <div className="songs-container">
@@ -35,7 +32,12 @@ export default function Songs() {
           <h1>Discover Tracks</h1>
           <SongFormModal type="new" />
         </div>
-        <ul>
+        <div className="songs-container">
+          {songArr.map((song, i) => {
+            return <IndividualSong song={song} key={i} />;
+          })}
+        </div>
+        {/* <ul>
           {keyArr.map((songId, i) => {
             return (
               <div key={i} className="song-container">
@@ -80,7 +82,7 @@ export default function Songs() {
               </div>
             );
           })}
-        </ul>
+        </ul> */}
         <div className="page-bottom-spacer"></div>
       </div>
     </div>

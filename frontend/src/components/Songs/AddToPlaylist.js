@@ -18,10 +18,10 @@ export default function AddToPlaylist({ closeModal, songId }) {
 
   const handleAddToPlaylist = (e) => {
     e.preventDefault();
-    const playlistId = e.target.value;
-    console.log();
+    const playlistId = parseInt(e.target.value);
+    console.log(playlistId, "playlistID");
+    console.log(songId, "songId");
     dispatch(playlistActions.addSongToPlaylist(songId, playlistId));
-
     closeModal();
   };
   if (!user) {

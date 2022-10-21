@@ -8,20 +8,26 @@ const pauseIconUrl =
   "https://res.cloudinary.com/dy199z8qt/image/upload/v1665680954/Eo_circle_deep-orange_pause.svg_zancav.png";
 
 export default function SongTile({ song }) {
-  const { currentSong, setSong, player } = useContext(AudioContext);
+  const { currentSong, setSong, player, playing } = useContext(AudioContext);
   const [isPlaying, setIsPlaying] = useState(currentSong === song);
   const [isPaused, setIsPaused] = useState(false);
 
+  //option 1 for getting play status
+  console.log(player.current.audio.current.paused, "paused1");
+
+  //option 2 for getting play status
+  const el = document.getElementsByClassName("rhap_play-status--paused");
+  console.log(el, "paused2");
+
   useEffect(() => {
-    console.log(currentSong.name, song.name);
-    console.log(currentSong.name === song.name, "songEquality");
     if (currentSong === song) {
       setIsPlaying(true);
     }
     if (currentSong !== song) {
       setIsPlaying(false);
     }
-  }, [currentSong, isPlaying, player]);
+    setIsPaused(!playing);
+  }, [currentSong, isPlaying, playing]);
   return (
     <div className="song-tile-overlay">
       <div
@@ -39,6 +45,7 @@ export default function SongTile({ song }) {
               setIsPaused(true);
             }
           }
+          // player.current.audio.current.togglePlay();
         }}
       >
         <div className="song-image-overlay">
