@@ -30,10 +30,10 @@ app.use(
     policy: "cross-origin",
   })
 );
-app.use((req, res, next) => {
-  console.log("before app.use(csurf)");
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log("before app.use(csurf)");
+//   next();
+// });
 // Set the _csrf token and create req.csrfToken method
 app.use(
   csurf({
@@ -44,10 +44,10 @@ app.use(
     },
   })
 );
-app.use((req, res, next) => {
-  console.log("after app.use(csurf)");
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log("after app.use(csurf)");
+//   next();
+// });
 
 app.use(routes);
 
