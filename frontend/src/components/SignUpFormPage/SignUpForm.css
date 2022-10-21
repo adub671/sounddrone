@@ -1,0 +1,35 @@
+.signup-input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+#signup-form {
+    
+    width: 50%;
+    
+
+}
+
+#signup-button {
+    background-color: yellow;
+    border: 1px solid black;
+    color: black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 20px;
+    padding: 2px 32px;
+    text-decoration: none;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 100px;
+  }
+
+  
+
+  form {
+    width: 70%;
+    margin: auto;
+   
+}

@@ -1,0 +1,42 @@
+.header {
+  height: 100px;
+  width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  margin-bottom: 0px;
+
+  text-align: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: lighter;
+
+  background-image: url("../../images/banner.jpg");
+  background-position: center;
+}
+
+.header > button {
+  height: 50px;
+
+  background-color: yellow;
+  border-radius: 5px;
+  margin-right: 50px;
+  border: none;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.header > h1 {
+  background-color: rgb(225 225 225 / 50%);
+  width: fit-content;
+  margin-left: 250px;
+  padding-inline: 20px;
+  height: fit-content;
+}
+
+.songs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}

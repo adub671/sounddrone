@@ -1,0 +1,21 @@
+.form-container {
+    display: inline-grid;
+    grid-template-columns: 30% 70%;
+    width: 100%;
+    /* margin-left: 10%; */
+    text-align: center;
+    padding: none;
+
+}
+
+.modal-img {
+    height: 150px;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-preview {
+    text-align: center;
+}
+
