@@ -44,6 +44,7 @@ app.use(
     },
   })
 );
+app.use(routes);
 // app.use((req, res, next) => {
 //   console.log("before app.use(csurf)");
 //   next();
