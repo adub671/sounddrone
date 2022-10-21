@@ -11,7 +11,6 @@ export default function Playlists() {
   const dispatch = useDispatch();
   const playlists = useSelector((state) => state.playlists);
   const keyArr = Object.keys(playlists);
-  console.log(playlists["1"], "playlist 0");
 
   useEffect(() => {
     dispatch(playlistActions.getAllPlaylists());
