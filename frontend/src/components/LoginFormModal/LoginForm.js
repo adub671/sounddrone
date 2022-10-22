@@ -12,15 +12,16 @@ function LoginForm({ title, closeModal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) {
-          setErrors(data.errors);
+    return dispatch(sessionActions.login({ credential, password }))
+      .catch(async (res) => {
+        console.log(res.status, "datainLoginForm");
+        if (res.status === 200) {
+          closeModal();
+        } else if (res.status === 401) {
+          setErrors(["Credentials Provided Are Not Correct"]);
         }
-        closeModal();
-      }
-    );
+      })
+      .then((data) => console.log(data, "dataaa"));
   };
 
   const demoLogin = (e) => {
