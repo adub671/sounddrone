@@ -38,10 +38,10 @@ function AddSongForm({ closeModal }) {
     if (!isValidUrl(imageUrl)) {
       errs.push("Please enter a valid image URL");
     }
-    if (audioUrl > 255) {
+    if (audioUrl.length > 255) {
       errs.push("Please provide an audio URL that is less than 255 Characters");
     }
-    if (imageUrl > 255) {
+    if (imageUrl.length > 255) {
       errs.push("Please provide an image URL that is less than 255 Characters");
     }
     setErrors(errs);

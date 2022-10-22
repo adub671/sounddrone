@@ -26,11 +26,15 @@ export function Playlist({ playlistid }) {
   }, [dispatch]);
 
   useEffect(() => {
-    if (songQueue.includes(playlist.Songs[playlist.Songs.length - 1])) {
+    if (
+      playlist.Songs &&
+      songQueue &&
+      songQueue?.includes(playlist.Songs[playlist.Songs.length - 1])
+    ) {
       setIsCurrentlyPlaying(true);
     }
 
-    if (playlist.Songs.includes(currentSong)) {
+    if (playlist.Songs && playlist.Songs?.includes(currentSong)) {
       setIsCurrentlyPlaying(true);
     } else {
       setIsCurrentlyPlaying(false);

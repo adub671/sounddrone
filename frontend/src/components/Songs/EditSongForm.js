@@ -16,39 +16,65 @@ function EditSongForm({ songId, closeModal, song }) {
   const [imageUrl, setImageUrl] = useState(song?.imgUrl);
   const [errors, setErrors] = useState([]);
 
+  const isValidUrl = (urlString) => {
+    var urlPattern = new RegExp(
+      "^(https?:\\/\\/)?" + // validate protocol
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // validate domain name
+        "((\\d{1,3}\\.){3}\\d{1,3}))" + // validate OR ip (v4) address
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // validate port and path
+        "(\\?[;&a-z\\d%_.~+=-]*)?" + // validate query string
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    ); // validate fragment locator
+    return !!urlPattern.test(urlString);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    // return dispatch(songActions.createSong({ name, imageUrl, userId: user.id })).catch(
-    //   async (res) => {
-    //     const data = await res.json();
-    //     if (data && data.errors) setErrors(data.errors);
-    //   }
-    // );
-    return dispatch(
-      songActions.editSong({
-        name,
-        audioUrl,
-        imgUrl: imageUrl,
-        userId: user.id,
-        id: songId,
-      })
-    )
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) {
-          setErrors(data.errors);
-          return data.errors;
-        }
-      })
-      .then((data) => {
-        //WHEN THERE IS AN ERROR I GET AN ARRAY FROM DATA
-        ///WHEN THERE IS NOT AN ERROR I GET AN OBJECT (SUCCESSFUL PROMISE)
-        //CLOSE MODAL ONLY IF YOU GET AN OBJECT
-        if (!Array.isArray(data)) {
-          closeModal();
-        }
-      });
+    const errs = [];
+    if (name.length > 100) {
+      errs.push("Please provide a name that is less than 100 Characters");
+    }
+    if (!isValidUrl(audioUrl)) {
+      errs.push("Please enter a valid audio URL");
+    }
+    if (!isValidUrl(imageUrl)) {
+      errs.push("Please enter a valid image URL");
+    }
+    if (audioUrl.length > 255) {
+      errs.push("Please provide an audio URL that is less than 255 Characters");
+    }
+    if (imageUrl.length > 255) {
+      errs.push("Please provide an image URL that is less than 255 Characters");
+    }
+    setErrors(errs);
+    if (errs.length === 0) {
+      return dispatch(
+        songActions.editSong({
+          name,
+          audioUrl,
+          imgUrl: imageUrl,
+          userId: user.id,
+          id: songId,
+        })
+      )
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) {
+            setErrors(data.errors);
+            return data.errors;
+          }
+        })
+        .then((data) => {
+          //WHEN THERE IS AN ERROR I GET AN ARRAY FROM DATA
+          ///WHEN THERE IS NOT AN ERROR I GET AN OBJECT (SUCCESSFUL PROMISE)
+          //CLOSE MODAL ONLY IF YOU GET AN OBJECT
+          if (!Array.isArray(data)) {
+            closeModal();
+          }
+        });
+    }
   };
 
   return (
