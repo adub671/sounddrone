@@ -98,7 +98,7 @@ export default function IndividualSong({ song, key }) {
         </div>
         <div className="song-info">
           <div className="song-artist-name">
-            {allUsers[song?.userId - 1].username}
+            {allUsers[song?.userId - 1]?.username}
           </div>
           <div className="song-name">{song?.name}</div>
         </div>
