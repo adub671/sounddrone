@@ -27,10 +27,12 @@ export default function AppAudioPlayer() {
 
   const clickNext = () => {
     const nextSong = songQueue[0];
-    const newQueue = [...songQueue];
-    newQueue.shift();
-    setSong(nextSong);
-    setSongQueue(newQueue);
+    if (nextSong) {
+      const newQueue = [...songQueue];
+      newQueue.shift();
+      setSong(nextSong);
+      setSongQueue(newQueue);
+    } else alert("No More Songs In Queue!");
   };
 
   const clickPrev = () => {
@@ -42,6 +44,7 @@ export default function AppAudioPlayer() {
   }, [dispatch]);
   return (
     <div className="fixed-audio-container">
+      <div className="player-logo">soundDrone</div>
       {songQueue.length === 0 ? null : (
         <div className="queue-container">
           <h1 className="next-up">NEXT UP: {songQueue[0]?.name} </h1>

@@ -1,5 +1,5 @@
 .now-playing-container {
-  background-color: red;
+  background-color: white;
 }
 
 .audio-player {
@@ -30,6 +30,9 @@
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 12px;
   text-align: center;
+  border: solid 2px black;
+  border-bottom: none;
+  border-right: none;
 }
 
 .now-playing-image-container {
@@ -82,10 +85,21 @@
   font-size: 20px;
 }
 
+.player-logo {
+  position: relative;
+  top: 75px;
+  left: 150px;
+  font-family: "Drone";
+  font-weight: bold;
+  font-size: 20px;
+  background-color: white;
+  width: min-content;
+  padding: 2px;
+}
 .queue-container {
   display: flex;
   flex-direction: column;
-  border: solid 0.1px whitesmoke;
+  border: solid 2px BLACK;
   border-bottom: none;
   padding-left: 15px;
   background-color: white;
@@ -147,22 +161,57 @@
 
 .rhap_container {
   background-image: url("../../images/banner.jpg");
-  $rhap_theme-color: black;
 }
 
 .rhap_time {
   color: white;
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.5); */
   border-radius: 5px;
   padding: 5px;
+  text-shadow: -1px 1px 3px black;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
 .rhap_main-controls {
-  background: rgba(245, 243, 243, 0.75);
-  border-radius: 5px;
+  /* background: rgba(245, 243, 243, 0.75); */
+  /* border-radius: 5px; */
 }
 .rhap_volume-container {
-  background: rgba(245, 243, 243, 0.75);
+  /* background: rgba(245, 243, 243, 0.75);
   border-radius: 5px;
-  padding-right: 5px;
+  padding-right: 5px; */
+}
+
+.rhap_button-clear[aria-label="Previous"] {
+  display: none;
+}
+
+.rhap_main-controls-button svg {
+  color: black;
+}
+
+.rhap_button-clear.rhap_volume-button {
+  color: black;
+}
+
+.rhap_volume-bar,
+.rhap_volume-indicator {
+  background-color: black;
+  border: solid 0.5px whitesmoke;
+}
+
+.rhap_progress-indicator {
+  background-color: black !important;
+  border: solid 0.1px whitesmoke;
+}
+.rhap_progress-filled {
+  background-color: black;
+}
+
+.rhap_download-progress {
+  background-color: white;
+}
+
+.rhap_repeat-button svg {
+  color: black;
 }

@@ -20,7 +20,7 @@ export default function Playlists() {
     return <h1>PLAYLISTS DO NOT EXIST </h1>;
   }
   return (
-    <div>
+    <div className="page-container">
       <div className="songs-container">
         <div className="header">
           <h1 className="playlist-title">Explore Playlists</h1>
