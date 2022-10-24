@@ -7,7 +7,7 @@
   margin-top: 50px;
 
   padding: 5px;
-  border: solid gray 1px;
+
   border-radius: 5px;
 }
 
@@ -18,6 +18,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.play-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
 }
 
 .play-pause-button {
@@ -53,7 +60,8 @@
 }
 
 .song-artist-name {
-  margin-left: 100px;
+  color: gray;
+  font-size: 12px;
 }
 
 .song-artist-name:hover {

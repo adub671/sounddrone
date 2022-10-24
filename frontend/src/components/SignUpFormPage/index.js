@@ -33,7 +33,7 @@ function SignupFormPage() {
     if (validateEmail(username)) {
       errs.push("Username cannot be an email");
     }
-    if (username.length > 4 || username.length < 30) {
+    if (username.length < 4 || username.length > 30) {
       errs.push("Please provide a username of between 4 and 30 characters");
     }
     if (password.length < 6) {

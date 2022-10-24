@@ -56,13 +56,13 @@ export default function IndividualSong({ song, key }) {
     }
   };
 
-  const handleCopyLink = (song) => {
-    // Copy the text inside the text field
-    navigator.clipboard.writeText(song.id);
+  // const handleCopyLink = (song) => {
+  //   // Copy the text inside the text field
+  //   navigator.clipboard.writeText(song.id);
 
-    // Alert the copied text
-    alert("Copied the text: " + song.id);
-  };
+  //   // Alert the copied text
+  //   alert("Copied the text: " + song.id);
+  // };
 
   const addToQueue = (song) => {
     if (songQueue.includes(song)) {
@@ -82,25 +82,27 @@ export default function IndividualSong({ song, key }) {
         <img src={song?.imgUrl} />
       </div>
       <div className="song-info-container">
-        <div className="play-pause-button">
-          <img
-            src={
-              song.name !== currentSong.name
-                ? playIconUrl
-                : isPlayOrPause === "play"
-                ? playIconUrl
-                : pauseIconUrl
-            }
-            onClick={() => {
-              handlePlay(song);
-            }}
-          />
-        </div>
-        <div className="song-info">
-          <div className="song-artist-name">
-            {allUsers[song?.userId - 1]?.username}
+        <div className="play-name">
+          <div className="play-pause-button">
+            <img
+              src={
+                song.name !== currentSong.name
+                  ? playIconUrl
+                  : isPlayOrPause === "play"
+                  ? playIconUrl
+                  : pauseIconUrl
+              }
+              onClick={() => {
+                handlePlay(song);
+              }}
+            />
           </div>
-          <div className="song-name">{song?.name}</div>
+          <div className="song-info">
+            <div className="song-artist-name">
+              {allUsers[song?.userId - 1]?.username}
+            </div>
+            <div className="song-name">{song?.name}</div>
+          </div>
         </div>
         <div className="song-action-buttons">
           {user?.id === song.userId ? (
@@ -118,14 +120,14 @@ export default function IndividualSong({ song, key }) {
             </>
           ) : null}
           <SongFormModal type={"addToPlaylist"} songId={song?.id} />
-          <button
+          {/* <button
             className="share"
             onClick={() => {
               handleCopyLink(song);
             }}
           >
             COPY LINK
-          </button>
+          </button> */}
           <button
             className="add-to-queue"
             onClick={() => {
