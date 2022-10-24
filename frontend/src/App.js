@@ -10,6 +10,7 @@ import Songs from "./components/Songs";
 import Home from "./components/Home/index ";
 import { AudioContext } from "./context/Audio";
 import AppAudioPlayer from "./components/AudioPlayer";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function App() {
         </Switch>
       )}
       <AppAudioPlayer />
+      <Footer />
     </>
   );
 }

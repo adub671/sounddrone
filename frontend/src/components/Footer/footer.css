@@ -1,0 +1,17 @@
+.footer {
+  height: 200px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  margin-bottom: 300px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  border-top: solid 5px whitesmoke;
+  background-color: yellow;
+}
+.footer-about {
+  margin-right: 200px;
+}
+
+.footer-links > a {
+  margin-inline: 10px;
+}
